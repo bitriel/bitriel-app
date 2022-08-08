@@ -4,6 +4,7 @@ import MenuList from './MenuList'
 import ExtensionAlert from './ExtensionAlert'
 import logo from 'assets/bitriel.png'
 import logoWhite from 'assets/bitriel.png'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   const { theme } = useTheme()
@@ -26,11 +27,13 @@ export default function Navbar() {
     >
       <Row align="middle" justify="center">
         <Col xs={0} sm={0} md={0} lg={20} xl={20}>
-          <img
-            src={theme === 'light' ? logo : logoWhite}
-            alt=""
-            className="sidebar-logo"
-          />
+          <Link to="/home">
+            <img
+              src={theme === 'light' ? logo : logoWhite}
+              alt=""
+              className="sidebar-logo"
+            />
+          </Link>
         </Col>
       </Row>
       <MenuList />

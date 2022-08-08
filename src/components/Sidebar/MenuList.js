@@ -1,4 +1,4 @@
-import { Menu } from 'antd'
+import { Col, Menu, Row } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import { routes } from '../../routes'
 import docs from 'assets/sidebar-icons/docs.svg'
@@ -13,13 +13,13 @@ const buttomMenus = [
     disable: false,
     external: true,
   },
-  {
-    icon: about,
-    name: 'About',
-    path: 'https://www.selendra.org/about',
-    disable: false,
-    external: true,
-  },
+  // {
+  //   icon: about,
+  //   name: 'About',
+  //   path: 'https://www.selendra.org/about',
+  //   disable: false,
+  //   external: true,
+  // },
   {
     icon: setting,
     name: 'Settings',
@@ -113,6 +113,22 @@ export default function MenuList() {
         selectedKeys={[location.pathname]}
         items={sidebarBottom}
       />
+      <Row gutter={[6, 0]} justify="center" className="about-container">
+        <Col span={20} className="about">
+          <center>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.selendra.org/about"
+            >
+              About
+            </a>
+          </center>
+        </Col>
+        <Col span={4}>
+          <i className="ri-sun-fill dark-mode"></i>
+        </Col>
+      </Row>
     </div>
   )
 }

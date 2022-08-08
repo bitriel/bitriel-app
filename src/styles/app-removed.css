@@ -97,6 +97,7 @@ i {
 .sidebar-itemIcon {
   filter: grayscale(100%);
 }
+
 /*===>> END SIDEBAR <<===*/
 /******
 /* Layout */
@@ -991,7 +992,7 @@ i {
   padding: 10px !important;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1600px) {
   .home-container {
     width: 60%;
   }

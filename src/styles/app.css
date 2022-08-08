@@ -53,7 +53,7 @@ i {
   line-height: 80px !important;
   text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb,
     0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1),
-    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    qety 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
     0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
@@ -87,23 +87,57 @@ i {
   min-height: 100vh;
   background-color: var(--foreground);
 }
+.logo {
+  height: 55px;
+  margin-top: 20px;
+}
 .index-top-section {
-  background-image: var(--background-home-image);
+  /* background-image: var(--background-home-image); */
+  background: var(--primary-gradient);
   min-height: 500px;
   background-size: cover;
   background-position: center;
 }
 .index-container {
-  max-width: 46rem;
+  max-width: 74rem;
   margin: 0px auto;
+  height: 850px !important;
+}
+.index-container2 {
+  max-width: 74rem;
+  margin: 0px auto;
+}
+.bitriel-mock-up {
+  width: 900px;
+  position: absolute;
+  right: -300px;
+  /* top: 40px; */
+}
+.bitriels-apps {
+  width: 1200px;
   position: relative;
 }
+.apps-title-container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+}
+.coin-transparent {
+  position: absolute;
+  width: 676px;
+  left: -600px;
+  opacity: 0.1;
+}
+.create-wallet-img {
+  height: 40px;
+}
 .welcome {
-  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 40px 0;
+  margin: 80px 0;
+  width: 75%;
 }
 .welcome-message {
   font-size: 48px;
@@ -112,16 +146,23 @@ i {
 }
 .welcome-sub-message {
   font-size: 24px;
-  color: #dadadad7 !important;
+  color: #fff !important;
   margin-top: 10px !important;
 }
+.create-restore-buttons {
+  padding-top: 50px;
+}
 .apps-section {
-  width: 70%;
+  /* width: 70%; */
   min-height: 34vh;
   font-size: 18px;
-  text-align: center;
   margin-top: 60px !important;
-  margin: 0px auto;
+  padding: 120px 0px;
+}
+.apps-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .index-footer {
   font-size: 16px;
@@ -141,28 +182,14 @@ i {
 .index-footer i:hover {
   color: #444444;
 }
-@media screen and (max-width: 768px) {
-  .index-container {
-    padding: 0 24px;
-  }
-  .welcome-message {
-    font-size: 40px;
-  }
-  .apps-section {
-    width: 80%;
-  }
-  .index-footer {
-    display: flex;
-    justify-content: center;
-  }
-}
+
 /*===>> END NOT AUTHENTICATED <<===*/
 /*===>> SIDEBAR <<===*/
 .wrapper {
   margin-left: 250px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background: linear-gradient(135deg, #13f1fc 0%, #0470dc 100%) !important;
+  /* background: linear-gradient(135deg, #13f1fc 0%, #0470dc 100%) !important; */
   animation: gradient 15s ease infinite;
 }
 .container {
@@ -175,23 +202,28 @@ i {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   animation: gradient 15s ease infinite;
-  background-color: rgba(243, 243, 243, 0.911);
+  /* background-color: rgba(243, 243, 243, 0.911); */
 }
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: var(--menu-background) !important;
+  background: var(--menu-gradient) !important;
 }
 .ant-layout-sider {
-  background-color: var(--background) !important;
+  background: var(--sidebar) !important;
+  box-shadow: 2px 4px 4px rgba(79, 52, 137, 0.25) !important;
 }
 .ant-menu-item {
   height: 55px !important;
 }
-.sidebar-sider .ant-layout-sider-children {
+/* .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background: none !important;
+} */
+
+/* .sidebar-sider .ant-layout-sider-children {
   border-radius: 0 30px 30px 0 !important;
-}
+} */
 .sidebar-sider .ant-layout-sider-children,
 .sidebar-menu {
-  background-color: var(--foreground) !important;
+  background-color: var(--sidebar) !important;
 }
 .sidebar-sider .ant-menu-item-selected::after {
   height: 25px !important;
@@ -215,7 +247,7 @@ i {
   min-height: 55vh;
 }
 .sidebar-itemActive {
-  color: #f37846 !important;
+  color: #f37747 !important;
 }
 .sidebar-itemIcon {
   filter: grayscale(100%);
@@ -224,7 +256,7 @@ i {
   padding: 15px 15px;
   padding-top: 8px;
   background-color: var(--background);
-  display: none;
+  display: none !important;
 }
 .ant-drawer-body {
   padding: 0 !important;
@@ -232,22 +264,7 @@ i {
 .ant-layout-header {
   background-color: #fff !important;
 }
-@media screen and (max-width: 991px) {
-  .wrapper {
-    margin: 0;
-  }
-  .sidebar-top {
-    min-height: initial;
-  }
-}
-@media screen and (max-width: 768px) {
-  .container {
-    padding: 0 16px;
-  }
-  .mobile-drawer-header {
-    display: block;
-  }
-}
+
 /*===>> END SIDEBAR <<===*/
 /*===>> HOME <<===*/
 .home-title {
@@ -355,13 +372,18 @@ i {
 .create-wallet-step .ant-steps-item-title {
   color: var(--text-color) !important;
 }
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon {
+  background: var(--primary-gradient) !important;
+  border: 1px solid var(--primary) !important;
+}
+
 /*===>> END CREATE WALLET <<===*/
 /*===>> RESTORE WALLET <<===*/
 .restore-wallet-card {
   font-size: 16px;
   text-align: center;
   border-radius: 18px;
-  border: 2px solid #03a9f4;
+  border: 2px solid var(--primary);
   cursor: pointer;
   transition: 0.2s;
   padding: 10px 20px;
@@ -369,16 +391,16 @@ i {
   margin-bottom: 20px;
 }
 .restore-wallet-card-active {
-  background-color: rgba(3, 169, 244, 0.1);
+  background-color: rgba(243, 119, 71, 0.21);
 }
 .restore-wallet-btnUpload {
   display: block;
   font-size: 16px;
   font-weight: 700;
   text-align: center;
-  color: #00a9f9 !important;
-  border: 2px solid #00a9f9;
-  border-radius: 50px;
+  color: var(--primary) !important;
+  border: 2px solid var(--primary);
+  border-radius: 16px;
   cursor: pointer;
   padding: 10px;
 }
@@ -403,9 +425,7 @@ i {
   transition: 0.4s all;
   cursor: pointer !important;
 }
-.earn-menu-item p {
-  /* line-height: ; */
-}
+
 .earn-menu-item:hover {
   transform: scale(1.03);
 }
@@ -499,4 +519,149 @@ i {
   color: #fff;
   background-color: #22272e;
 }
+.about a {
+  color: #878787 !important;
+  font-weight: 400;
+  cursor: pointer;
+}
+.about a:hover {
+  color: var(--primary) !important;
+}
+
+.dark-mode {
+  color: #878787 !important;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 27px;
+  position: relative;
+  top: -10px;
+}
+.about-container {
+  padding-top: 60px;
+}
 /*===>> END LOADING <<===*/
+
+/* ================responsive ================ */
+
+@media screen and (max-width: 1600px) {
+  .coin-transparent {
+    position: absolute;
+    left: -300px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .bitriel-mock-up {
+    width: 600px;
+    position: absolute;
+    right: -160px;
+  }
+  .index-container {
+    padding: 20px 120px;
+    height: 747px !important;
+  }
+  .welcome {
+    width: 93%;
+  }
+  .bitriels-apps {
+    width: 900px;
+    margin: auto;
+    display: grid;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .wrapper {
+    margin: 0;
+  }
+  .sidebar-top {
+    min-height: initial;
+  }
+  .bitriel-mock-up {
+    width: 460px;
+    position: absolute;
+    right: -100px;
+    top: 150px;
+  }
+  .index-container {
+    padding: 20px 50px;
+    height: 747px !important;
+  }
+  .welcome {
+    width: 100%;
+  }
+  .bitriels-apps {
+    width: 600px;
+    margin: auto;
+    display: grid;
+  }
+  .welcome-message {
+    font-size: 40px;
+  }
+  .logo {
+    height: 45px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  .mobile-drawer-header {
+    display: block;
+  }
+  .index-container {
+    padding: 0 24px;
+  }
+  .welcome-message {
+    font-size: 40px;
+  }
+  .apps-section {
+    width: 80%;
+  }
+  .index-footer {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .welcome-message {
+    font-size: 26px;
+  }
+  .welcome-sub-message {
+    font-size: 16px;
+  }
+  .bitriel-mock-up {
+    width: 300px;
+    position: absolute;
+    right: 10px;
+    top: 18px;
+  }
+  .create-wallet-img {
+    height: 30px;
+  }
+  .apps-section {
+    width: 100%;
+    padding-top: 20px;
+  }
+  .apps-section h3 {
+    font-size: 16px !important;
+  }
+  .bitriels-apps {
+    width: 350px;
+    margin-top: 50px;
+  }
+  .apps-title-container {
+    width: 89%;
+  }
+  .coin-transparent {
+    display: none;
+  }
+  .welcome {
+    margin: 0;
+    padding: 30px 0px;
+  }
+  .logo {
+    height: 40px !important;
+  }
+}

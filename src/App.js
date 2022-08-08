@@ -5,7 +5,7 @@ import { routes } from './routes'
 import { useSubstrateState } from './context/SubstrateContext'
 import Loading from './components/Loading'
 import './styles/app.css'
-import { Footer, Header } from 'antd/lib/layout/layout'
+import { Footer } from 'antd/lib/layout/layout'
 
 export default function App() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -24,7 +24,6 @@ export default function App() {
     <ThemeProvider enableSystem={false}>
       <BrowserRouter>
         <AnimatePresence>
-          <Header>Hello</Header>
           <Routes>
             {routes.map((i) => (
               <Route key={i.path} path={i.path} element={i.element} />

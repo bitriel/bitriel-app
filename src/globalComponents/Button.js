@@ -1,10 +1,15 @@
-import { Button as AntButton } from 'antd';
+import { Button as AntButton } from 'antd'
 
-export default function Button({children, ...restProps}) {
-  return <div {...restProps}>{children}</div>;
+export default function Button({ children, ...restProps }) {
+  return <div {...restProps}>{children}</div>
 }
 
-Button.Primary = function ButtonPrimary({children, medium, large, ...restProps}) {
+Button.Primary = function ButtonPrimary({
+  children,
+  medium,
+  large,
+  ...restProps
+}) {
   return (
     <AntButton
       {...restProps}
@@ -13,11 +18,18 @@ Button.Primary = function ButtonPrimary({children, medium, large, ...restProps})
         ${medium && 'funan-btnPrimaryMedium'}
         ${large && 'funan-btnPrimaryLarge'}
       `}
-    >{children}</AntButton>
+    >
+      {children}
+    </AntButton>
   )
 }
 
-Button.Secondary = function ButtonSecondary({children, medium, large, ...restProps}) {
+Button.Secondary = function ButtonSecondary({
+  children,
+  medium,
+  large,
+  ...restProps
+}) {
   return (
     <AntButton
       {...restProps}
@@ -26,11 +38,28 @@ Button.Secondary = function ButtonSecondary({children, medium, large, ...restPro
         ${medium && 'funan-btnSecondaryMedium'}
         ${large && 'funan-btnSecondaryLarge'}
       `}
-    >{children}</AntButton>
+    >
+      {children}
+    </AntButton>
   )
 }
 
-Button.Accent = function ButtonAccent({children, medium, ...restProps}) {
+Button.Third = function ButtonThird({ children, medium, large, ...restProps }) {
+  return (
+    <AntButton
+      {...restProps}
+      className={`
+        funan-btn funan-btnThird
+        ${medium && 'funan-btnThirdMedium'}
+        ${large && 'funan-btnThirdLarge'}
+      `}
+    >
+      {children}
+    </AntButton>
+  )
+}
+
+Button.Accent = function ButtonAccent({ children, medium, ...restProps }) {
   return (
     <AntButton
       {...restProps}
@@ -38,38 +67,45 @@ Button.Accent = function ButtonAccent({children, medium, ...restProps}) {
         funan-btn funan-btnAccent
         ${medium && 'funan-btnAccentMedium'}
       `}
-    >{children}</AntButton>
+    >
+      {children}
+    </AntButton>
   )
 }
 
-Button.Danger = function ButtonDanger({children, ...restProps}) {
+Button.Danger = function ButtonDanger({ children, ...restProps }) {
   return (
-    <AntButton
-      {...restProps}
-      className='funan-btnDanger'
-    >{children}</AntButton>
+    <AntButton {...restProps} className="funan-btnDanger">
+      {children}
+    </AntButton>
   )
 }
 
-Button.Link = function ButtonLink({children, ...restProps}) {
+Button.Link = function ButtonLink({ children, ...restProps }) {
   return (
-    <AntButton
-      {...restProps}
-      type='link'
-    >{children}</AntButton>
+    <AntButton {...restProps} type="link">
+      {children}
+    </AntButton>
   )
 }
 
-Button.Outline = function ButtonOutline({children, primary, danger, ...restProps}) {
+Button.Outline = function ButtonOutline({
+  children,
+  primary,
+  danger,
+  ...restProps
+}) {
   return (
     <AntButton
       {...restProps}
-      type='ghost'
+      type="ghost"
       className={`
         funan-btn funan-btnOutline 
         ${primary && 'funan-btnOutlinePrimary'}
         ${danger && 'funan-btnOutlineDanger'}
       `}
-    >{children}</AntButton>
+    >
+      {children}
+    </AntButton>
   )
 }

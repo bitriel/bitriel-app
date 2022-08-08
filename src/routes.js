@@ -13,7 +13,6 @@ import Setting from './pages/settings'
 import Connect from './pages/connect'
 import Sidebar from './components/Sidebar'
 import PageRouteAnimation from './components/Animations/PageRoute'
-
 import wallet from './assets/sidebar-icons/wallet.svg'
 import transfer from './assets/sidebar-icons/transfer.svg'
 import earn from './assets/sidebar-icons/earn.svg'
@@ -37,35 +36,75 @@ const routes = [
     ),
   },
   {
-    path: '/wallet',
-    name: 'Wallet',
+    path: '/portfolio/selendra',
+    name: 'Portfolio',
     icon: wallet,
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="home">
+        <PageRouteAnimation myKey="portfolio/selendra">
+          <Send />
+        </PageRouteAnimation>
+      </Sidebar>
+    ),
+  },
+  {
+    path: '/portfolio/transfer/send',
+    element: (
+      <Sidebar>
+        <PageRouteAnimation myKey="/portfolio/transfer/send">
+          <Send />
+        </PageRouteAnimation>
+      </Sidebar>
+    ),
+  },
+  {
+    path: '/portfolio/transfer/received',
+    element: (
+      <Sidebar>
+        <PageRouteAnimation myKey="portfolio/transfer/received">
+          <Send />
+        </PageRouteAnimation>
+      </Sidebar>
+    ),
+  },
+  // {
+  //   path: 'wallet/send',
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="wallet/send">
+  //         <Send />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
+  {
+    path: '/swap',
+    name: 'Swap',
+    icon: transfer,
+    element: (
+      <Sidebar>
+        <PageRouteAnimation myKey="swap">
           <Home />
         </PageRouteAnimation>
       </Sidebar>
     ),
   },
   {
-    path: '/wallet',
-    name: 'Transfer',
-    icon: transfer,
+    path: '/swap/liquidity/add',
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="wallet">
-          <Wallet />
+        <PageRouteAnimation myKey="swap/liquidity/add">
+          <Home />
         </PageRouteAnimation>
       </Sidebar>
     ),
   },
   {
-    path: 'wallet/send',
+    path: '/swap/liquidity/withdraw',
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="wallet/send">
-          <Send />
+        <PageRouteAnimation myKey="swap/liquidity/withdraw">
+          <Home />
         </PageRouteAnimation>
       </Sidebar>
     ),
@@ -93,30 +132,30 @@ const routes = [
     ),
   },
   {
-    path: '/staking',
+    path: 'earn/staking',
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="staking">
+        <PageRouteAnimation myKey="earn/staking">
           <Staking />
         </PageRouteAnimation>
       </Sidebar>
     ),
   },
   {
-    path: '/staking/payout',
+    path: 'earn/pool',
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="staking">
+        <PageRouteAnimation myKey="earn/pool">
           <Payout />
         </PageRouteAnimation>
       </Sidebar>
     ),
   },
   {
-    path: '/staking/setup',
+    path: 'earn/validator',
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="earn">
+        <PageRouteAnimation myKey="earn/validator">
           <SetupStaking />
         </PageRouteAnimation>
       </Sidebar>
@@ -132,21 +171,21 @@ const routes = [
       </Sidebar>
     ),
   },
-  {
-    path: 'about',
-    element: (
-      <Sidebar>
-        <PageRouteAnimation myKey="about">
-          <About />
-        </PageRouteAnimation>
-      </Sidebar>
-    ),
-  },
+  // {
+  //   path: 'about',
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="about">
+  //         <About />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
   {
     path: 'settings',
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="about">
+        <PageRouteAnimation myKey="settngs">
           <Setting />
         </PageRouteAnimation>
       </Sidebar>
