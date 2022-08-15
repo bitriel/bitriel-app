@@ -2,8 +2,8 @@ import { Col, Menu, Row } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import { routes } from '../../routes'
 import docs from 'assets/sidebar-icons/docs.svg'
-import about from 'assets/sidebar-icons/about.svg'
 import setting from 'assets/sidebar-icons/setting.svg'
+import { useTheme } from 'next-themes'
 
 const buttomMenus = [
   {
@@ -30,8 +30,11 @@ const buttomMenus = [
 ]
 
 export default function MenuList() {
+  const { theme, setTheme } = useTheme()
   const location = useLocation()
   const active = (path) => path === location.pathname
+
+  console.log(theme)
 
   const sidebarTop = routes.map((i) => {
     if (!i.name) return null
@@ -119,14 +122,24 @@ export default function MenuList() {
             <a
               target="_blank"
               rel="noreferrer"
-              href="https://www.selendra.org/about"
+              href="https://github.com/selendra"
             >
-              About
+              Github
             </a>
           </center>
         </Col>
         <Col span={4}>
-          <i className="ri-sun-fill dark-mode"></i>
+          {theme === 'light' ? (
+            <i
+              onClick={() => setTheme('dark')}
+              className="ri-moon-fill dark-mode"
+            ></i>
+          ) : (
+            <i
+              onClick={() => setTheme('light')}
+              className="ri-sun-fill dark-mode"
+            ></i>
+          )}
         </Col>
       </Row>
     </div>

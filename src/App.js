@@ -5,7 +5,6 @@ import { routes } from './routes'
 import { useSubstrateState } from './context/SubstrateContext'
 import Loading from './components/Loading'
 import './styles/app.css'
-import { Footer } from 'antd/lib/layout/layout'
 
 export default function App() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -29,13 +28,6 @@ export default function App() {
               <Route key={i.path} path={i.path} element={i.element} />
             ))}
           </Routes>
-          <Footer style={{ background: '#fff' }}>
-            <center>
-              <p>
-                Build with &#10084;&#65039; <b>SELENDRA</b>
-              </p>
-            </center>
-          </Footer>
         </AnimatePresence>
       </BrowserRouter>
     </ThemeProvider>

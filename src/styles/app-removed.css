@@ -385,9 +385,7 @@ i {
 }
 .ant-layout {
   min-height: 90vh !important;
-  /* background: var(--background) !important; */
-  padding-bottom: 50px;
-  background: transparent !important;
+  background: var(--background) !important;
 }
 .top-menu {
   display: flex;

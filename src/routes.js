@@ -1,22 +1,24 @@
 import Index from './pages'
-import About from './pages/about'
 import Earn from './pages/earn'
 import Staking from './pages/earn/staking'
 import Payout from './pages/earn/staking/payout'
 import Home from './pages/home'
-import Wallet from './pages/wallet'
-import Receive from './pages/wallet/receive'
-import Send from './pages/wallet/send'
+import Wallet from './pages/portfolio'
+import Receive from './pages/portfolio/receive'
+import Send from './pages/portfolio/send'
 import NotFound from './pages/notfound'
 import SetupStaking from './pages/earn/staking/setupStaking'
 import Setting from './pages/settings'
 import Connect from './pages/connect'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/Layout'
 import PageRouteAnimation from './components/Animations/PageRoute'
 import wallet from './assets/sidebar-icons/wallet.svg'
+import home from './assets/sidebar-icons/home.svg'
 import transfer from './assets/sidebar-icons/transfer.svg'
 import earn from './assets/sidebar-icons/earn.svg'
 import launchpad from './assets/sidebar-icons/launchpad.svg'
+import Portfolio from './pages/portfolio'
+import Swap from './pages/swap'
 
 const routes = [
   {
@@ -26,7 +28,7 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    icon: wallet,
+    icon: home,
     element: (
       <Sidebar>
         <PageRouteAnimation myKey="home">
@@ -36,37 +38,38 @@ const routes = [
     ),
   },
   {
-    path: '/portfolio/selendra',
+    path: '/portfolio',
     name: 'Portfolio',
     icon: wallet,
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="portfolio/selendra">
-          <Send />
+        <PageRouteAnimation myKey="portfolio">
+          <Portfolio />
         </PageRouteAnimation>
       </Sidebar>
     ),
   },
-  {
-    path: '/portfolio/transfer/send',
-    element: (
-      <Sidebar>
-        <PageRouteAnimation myKey="/portfolio/transfer/send">
-          <Send />
-        </PageRouteAnimation>
-      </Sidebar>
-    ),
-  },
-  {
-    path: '/portfolio/transfer/received',
-    element: (
-      <Sidebar>
-        <PageRouteAnimation myKey="portfolio/transfer/received">
-          <Send />
-        </PageRouteAnimation>
-      </Sidebar>
-    ),
-  },
+  // {
+  //   path: '/portfolio/transfer/send',
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="/portfolio/transfer/send">
+  //         <Send />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
+  // {
+  //   path: '/portfolio/transfer/received',
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="portfolio/transfer/received">
+  //         <Send />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
+
   // {
   //   path: 'wallet/send',
   //   element: (
@@ -84,7 +87,7 @@ const routes = [
     element: (
       <Sidebar>
         <PageRouteAnimation myKey="swap">
-          <Home />
+          <Swap />
         </PageRouteAnimation>
       </Sidebar>
     ),
@@ -105,6 +108,16 @@ const routes = [
       <Sidebar>
         <PageRouteAnimation myKey="swap/liquidity/withdraw">
           <Home />
+        </PageRouteAnimation>
+      </Sidebar>
+    ),
+  },
+  {
+    path: '/wallet/send',
+    element: (
+      <Sidebar>
+        <PageRouteAnimation myKey="wallet/send">
+          <Send />
         </PageRouteAnimation>
       </Sidebar>
     ),

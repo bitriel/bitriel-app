@@ -1,0 +1,166 @@
+import React from 'react'
+import { Row, Col, Divider, Avatar } from 'antd'
+import { Card } from 'globalComponents'
+import wallet from '../../assets/icons/wallet.svg'
+import sel from '../../assets/SEL-coin-transparent.png'
+import Assets from '../../components/MyPortfolio/assets'
+import staking from '../../assets/icons/staking.svg'
+import { createAvatar } from '@dicebear/avatars'
+import * as style from '@dicebear/avatars-bottts-sprites'
+import WalletGraph from '../../components/MyPortfolio/WalletGraph'
+
+const MyPortfolio = ({ inVisible, onVisible, visible }) => {
+  let svg = createAvatar(style, {
+    seed: 'vuthy',
+    dataUri: true,
+    size: 64,
+    backgroundColor: 'rgba(243, 119, 71, 0.21)',
+    scale: 80,
+  })
+
+  return (
+    <>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Row gutter={[16, 16]}>
+            <Col span={24}>
+              <Card.Auto>
+                <Row gutter={[24, 24]}>
+                  <Col span={8}>
+                    <img
+                      src={wallet}
+                      alt=""
+                      height={70}
+                      className="my-portfolio"
+                    />
+                  </Col>
+                  <Col span={14}>
+                    {visible ? (
+                      <>
+                        <h4>My Portfolio</h4>
+                        <h1 className="portfolio-money">$ 24000.00</h1>
+                        <p className="portfolio-equalto">≈ 1.000111 BTC</p>
+                      </>
+                    ) : (
+                      <>
+                        <h4>My Portfolio</h4>
+                        <h1 className="portfolio-money">*******</h1>
+                        <p className="portfolio-equalto">*********</p>
+                      </>
+                    )}
+                  </Col>
+                  <img src={sel} alt="" className="portfolio-sel-transparent" />
+                  <div>
+                    {visible ? (
+                      <i
+                        onClick={inVisible}
+                        className="ri-eye-fill portfolio-visible-wallet"
+                      ></i>
+                    ) : (
+                      <i
+                        onClick={onVisible}
+                        class="ri-eye-off-fill portfolio-visible-wallet"
+                      ></i>
+                    )}
+                  </div>
+                </Row>
+              </Card.Auto>
+            </Col>
+            <Col span={24}>
+              <Card.Auto>
+                {visible ? (
+                  <>
+                    <div className="portfolio-staking">
+                      <h3>Staking</h3>
+                      <img src={staking} heigh={20} alt="" />
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <div>
+                        <Avatar src={svg} />
+                        <span className="portfolio-validator-name">BETA</span>
+                      </div>
+                      <p>Validator</p>
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <p>
+                        <strong>350.00%</strong>
+                      </p>
+                      <p>APR</p>
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <p>
+                        <strong>12000.0023</strong>
+                      </p>
+                      <p>Locked SEL</p>
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <p>
+                        <strong>350.0001</strong>
+                      </p>
+                      <p>Cumulative Interest</p>
+                    </div>
+                    <Divider />
+                    <div className="portfolio-staking-token">
+                      <p className="portfolio-overall">
+                        <strong>$10.01</strong>
+                      </p>
+                      <p className="portfolio-overall">Overall</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="portfolio-staking">
+                      <h3>Staking</h3>
+                      <img src={staking} heigh={20} alt="" />
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <div>
+                        <Avatar src={svg} />
+                        <span className="portfolio-validator-name">BETA</span>
+                      </div>
+                      <p>Validator</p>
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <p>
+                        <strong>350.00%</strong>
+                      </p>
+                      <p>APR</p>
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <p>
+                        <strong>**********</strong>
+                      </p>
+                      <p>Locked SEL</p>
+                    </div>
+                    <div className="portfolio-staking-token">
+                      <p>
+                        <strong>**********</strong>
+                      </p>
+                      <p>Cumulative Interest</p>
+                    </div>
+                    <Divider />
+                    <div className="portfolio-staking-token">
+                      <p className="portfolio-overall">
+                        <strong>**********</strong>
+                      </p>
+                      <p className="portfolio-overall">Overall</p>
+                    </div>
+                  </>
+                )}
+              </Card.Auto>
+            </Col>
+          </Row>
+        </Col>
+        <Col span={12}>
+          <WalletGraph visible={visible} />
+        </Col>
+
+        <Col span={24}>
+          <Assets />
+        </Col>
+      </Row>
+    </>
+  )
+}
+
+export default MyPortfolio

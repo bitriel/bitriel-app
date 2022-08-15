@@ -6,7 +6,7 @@ import logo from 'assets/bitriel.png'
 import logoWhite from 'assets/bitriel.png'
 import { Link } from 'react-router-dom'
 
-export default function Navbar() {
+export default function Sidebar() {
   const { theme } = useTheme()
 
   return (
@@ -17,7 +17,7 @@ export default function Navbar() {
       width={250}
       className="sidebar-sider"
       style={{
-        overflow: 'auto',
+        overflow: 'hidden',
         height: '100%',
         position: 'fixed',
         left: 0,

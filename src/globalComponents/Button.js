@@ -59,6 +59,26 @@ Button.Third = function ButtonThird({ children, medium, large, ...restProps }) {
   )
 }
 
+Button.GradientBorder = function ButtonGradient({
+  children,
+  medium,
+  large,
+  ...restProps
+}) {
+  return (
+    <AntButton
+      {...restProps}
+      className={`
+        funan-btn funan-btnGradient
+        ${medium && 'funan-btnGradientMedium'}
+        ${large && 'funan-btnGradientLarge'}
+      `}
+    >
+      {children}
+    </AntButton>
+  )
+}
+
 Button.Accent = function ButtonAccent({ children, medium, ...restProps }) {
   return (
     <AntButton

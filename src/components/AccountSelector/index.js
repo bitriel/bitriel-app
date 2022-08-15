@@ -1,31 +1,27 @@
 import Icon from '@ant-design/icons'
-import { Link } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import { Card } from 'globalComponents'
-import { useState, useEffect, useContext } from 'react'
-import { Badge, Button, Col, Row } from 'antd'
+import { useState, useEffect } from 'react'
+import { Button, Col, Row } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { getUsername, shortenAddress } from '../../utils'
 import { useSubstrate } from '../../context/SubstrateContext'
-import { AccountContext } from '../../context/AccountContext'
 import ButtonConnect from './ButtonConnect'
 import CreateWallet from '../CreateWallet'
 import RestoreWallet from '../RestoreWallet'
 import ModalSelectAccount from './ModalSelectAccount'
 import selendra from 'assets/sel-icon.svg'
-import evm from 'assets/icons/wallet-evm.svg'
-import create from 'assets/icons/create-wallet.svg'
+import create from 'assets/icons/create-wallet-orange.svg'
 import restore from 'assets/icons/restore.svg'
 
 import { ReactComponent as Edit } from 'assets/icons/edit.svg'
-import { ReactComponent as Copy } from 'assets/icons/copy.svg'
+import { ReactComponent as Copy } from 'assets/icons/copy-red.svg'
 const EditIcon = (props) => <Icon component={Edit} {...props} />
 const CopyIcon = (props) => <Icon component={Copy} {...props} />
 
 const address = (addr) => (addr ? addr.address : '')
 
 export default function AccountSelector({ keyringOptions }) {
-  const { account } = useContext(AccountContext)
   const {
     setCurrentAccount,
     state: { keyring, currentAccount },
@@ -53,102 +49,73 @@ export default function AccountSelector({ keyringOptions }) {
   return (
     <div>
       <Card>
-        <Row justify="space-around" align="middle">
-          <Col xs={24} sm={12} md={12} lg={12} xl={12}>
-            <Row gutter={[32, 32]} justify="start">
-              <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-                {account ? (
-                  <ButtonConnect
-                    className="home-connect-evm"
-                    icon={evm}
-                    title="Connected"
-                  />
-                ) : (
-                  <Link to="/connect">
-                    <ButtonConnect
-                      className="home-connect-evm"
-                      icon={evm}
-                      title="Connect EVM"
-                    />
-                  </Link>
-                )}
-              </Col>
-              <Col
-                xs={8}
-                sm={8}
-                md={8}
-                lg={8}
-                xl={8}
-                onClick={() => setCreateWalletVisible(true)}
-              >
+        <Row
+          gutter={[0, 12]}
+          justify="center"
+          align="middle"
+          className="home-wallet-container"
+        >
+          <Col>
+            <img
+              alt=""
+              src={selendra}
+              height={70}
+              width={70}
+              className="account-avatar"
+            />
+            <div className="account-active" />
+          </Col>
+          <Col>
+            {keyringOptions.length > 0 ? (
+              <div>
+                <h1 className="address-name">
+                  {getUsername(address(currentAccount))}
+                </h1>
+                <Button
+                  type="link"
+                  icon={<EditIcon className="swicth-icon" />}
+                  style={{ paddingLeft: '0' }}
+                  onClick={() => setModal(true)}
+                >
+                  Switch
+                </Button>
+                <CopyToClipboard text={address(currentAccount)}>
+                  <Button
+                    type="link"
+                    icon={<CopyIcon className="copy-icon" />}
+                    style={{ paddingLeft: '0' }}
+                    onClick={() => toast.success('Copied')}
+                  >
+                    Copy
+                  </Button>
+                </CopyToClipboard>
+              </div>
+            ) : (
+              <p style={{ fontWeight: '500' }}>
+                You don't have Selendra wallet yet.
+              </p>
+            )}
+          </Col>
+          <Col span={24}>
+            <center>
+              <p>{shortenAddress(address(currentAccount))}</p>
+            </center>
+          </Col>
+          <Col span={24} className="home-buttons-options-container">
+            <Row gutter={[24, 24]} justify="center">
+              <Col onClick={() => setCreateWalletVisible(true)}>
                 <ButtonConnect
                   className="home-create-wallet"
                   icon={create}
                   title="Create Wallet"
                 />
               </Col>
-              <Col
-                xs={8}
-                sm={8}
-                md={8}
-                lg={8}
-                xl={8}
-                onClick={() => setVisible(true)}
-              >
+              <Col onClick={() => setVisible(true)}>
                 <ButtonConnect
                   className="home-restore-wallet"
                   icon={restore}
                   title="Restore Wallet"
                 />
-              </Col>
-            </Row>
-          </Col>
-          <Col xs={24} sm={8} md={6} lg={6} xl={8}>
-            <Row gutter={[32, 8]} align="middle" justify="start">
-              <Col>
-                <Row justify="center">
-                  <Badge dot={currentAccount} color="green">
-                    <img
-                      alt=""
-                      src={selendra}
-                      height={50}
-                      width={50}
-                      className="account-avatar"
-                    />
-                  </Badge>
-                </Row>
-              </Col>
-              <Col>
-                {keyringOptions.length > 0 ? (
-                  <div>
-                    <h3>{getUsername(address(currentAccount))}</h3>
-                    <p>{shortenAddress(address(currentAccount))}</p>
-                    <Row gutter={[8, 8]}>
-                      <Button
-                        type="link"
-                        icon={<EditIcon />}
-                        style={{ paddingLeft: '0' }}
-                        onClick={() => setModal(true)}
-                      >
-                        Switch
-                      </Button>
-                      <CopyToClipboard text={address(currentAccount)}>
-                        <Button
-                          type="link"
-                          icon={<CopyIcon />}
-                          style={{ paddingLeft: '0' }}
-                          onClick={() => toast.success('Copied')}
-                        >
-                          Copy
-                        </Button>
-                      </CopyToClipboard>
-                    </Row>
-                  </div>
-                ) : (
-                  <p style={{ fontWeight: '500' }}>
-                    You don't have Selendra wallet yet.
-                  </p>
-                )}
               </Col>
             </Row>
           </Col>

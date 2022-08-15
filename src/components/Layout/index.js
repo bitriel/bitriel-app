@@ -1,7 +1,10 @@
 import { Layout } from 'antd'
 import { useEffect } from 'react'
-import Navbar from './Navbar'
+import Sidebar from './Sidebar'
 import MobileDrawer from './MobileDrawer'
+import Navbar from './Navbar'
+
+const { Header, Footer, Content } = Layout
 
 export default function LayoutComponent({ children }) {
   useEffect(() => {
@@ -22,16 +25,24 @@ export default function LayoutComponent({ children }) {
 
   return (
     <Layout hasSider>
-      <Navbar />
+      <Sidebar />
       <Layout>
         <MobileDrawer />
-        <Layout.Content>
+        <Content>
           <div className="wrapper">
             <div className="wrapper-sub-background">
+              <Navbar />
               <div className="container">{children}</div>
             </div>
+            <Footer style={{ background: '#fff' }}>
+              <center>
+                <p>
+                  Build with &#10084;&#65039; <b>SELENDRA</b>
+                </p>
+              </center>
+            </Footer>
           </div>
-        </Layout.Content>
+        </Content>
       </Layout>
     </Layout>
   )

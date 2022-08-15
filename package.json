@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@dicebear/avatars": "^4.10.3",
+    "@dicebear/avatars-bottts-sprites": "^4.10.3",
     "@polkadot/api": "^7.10.1",
     "@polkadot/extension-dapp": "^0.42.7",
     "@polkadot/ui-keyring": "^1.1.1",
