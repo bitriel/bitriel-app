@@ -1,13 +1,12 @@
 import Index from './pages'
 import Earn from './pages/earn'
-import Staking from './pages/earn/staking'
-import Payout from './pages/earn/staking/payout'
+// import Staking from './pages/earn/staking'
+// import SetupStaking from './pages/earn/staking/setupStaking'
+// import Payout from './pages/earn/staking/payout'
 import Home from './pages/home'
-import Wallet from './pages/portfolio'
 import Receive from './pages/portfolio/receive'
 import Send from './pages/portfolio/send'
 import NotFound from './pages/notfound'
-import SetupStaking from './pages/earn/staking/setupStaking'
 import Setting from './pages/settings'
 import Connect from './pages/connect'
 import Sidebar from './components/Layout'
@@ -19,6 +18,8 @@ import earn from './assets/sidebar-icons/earn.svg'
 import launchpad from './assets/sidebar-icons/launchpad.svg'
 import Portfolio from './pages/portfolio'
 import Swap from './pages/swap'
+import { Launchpad } from './pages/launchpad'
+import { SinglePage } from './pages/launchpad/launchpad-singlepage'
 
 const routes = [
   {
@@ -43,7 +44,7 @@ const routes = [
     icon: wallet,
     element: (
       <Sidebar>
-        <PageRouteAnimation myKey="portfolio">
+        <PageRouteAnimation myKey="/portfolio">
           <Portfolio />
         </PageRouteAnimation>
       </Sidebar>
@@ -144,56 +145,56 @@ const routes = [
       </Sidebar>
     ),
   },
-  {
-    path: 'earn/staking',
-    element: (
-      <Sidebar>
-        <PageRouteAnimation myKey="earn/staking">
-          <Staking />
-        </PageRouteAnimation>
-      </Sidebar>
-    ),
-  },
-  {
-    path: 'earn/pool',
-    element: (
-      <Sidebar>
-        <PageRouteAnimation myKey="earn/pool">
-          <Payout />
-        </PageRouteAnimation>
-      </Sidebar>
-    ),
-  },
-  {
-    path: 'earn/validator',
-    element: (
-      <Sidebar>
-        <PageRouteAnimation myKey="earn/validator">
-          <SetupStaking />
-        </PageRouteAnimation>
-      </Sidebar>
-    ),
-  },
+  // {
+  //   path: 'earn/staking',
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="earn/staking">
+  //         <Staking />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
+  // {
+  //   path: 'earn/pool',
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="earn/pool">
+  //         <Payout />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
+  // {
+  //   path: 'earn/validator',
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="earn/validator">
+  //         <SetupStaking />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
   {
     path: '/launchpad',
     name: 'Launchpad',
     icon: launchpad,
     element: (
       <Sidebar>
-        <NotFound />
+        <Launchpad />
       </Sidebar>
     ),
   },
-  // {
-  //   path: 'about',
-  //   element: (
-  //     <Sidebar>
-  //       <PageRouteAnimation myKey="about">
-  //         <About />
-  //       </PageRouteAnimation>
-  //     </Sidebar>
-  //   ),
-  // },
+  {
+    path: '/launchpad/:name',
+    element: (
+      <Sidebar>
+        <PageRouteAnimation myKey="about">
+          <SinglePage />
+        </PageRouteAnimation>
+      </Sidebar>
+    ),
+  },
   {
     path: 'settings',
     element: (

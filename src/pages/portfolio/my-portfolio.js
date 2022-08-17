@@ -1,23 +1,14 @@
 import React from 'react'
-import { Row, Col, Divider, Avatar } from 'antd'
+import { Row, Col, Divider } from 'antd'
 import { Card } from 'globalComponents'
 import wallet from '../../assets/icons/wallet.svg'
 import sel from '../../assets/SEL-coin-transparent.png'
 import Assets from '../../components/MyPortfolio/assets'
 import staking from '../../assets/icons/staking.svg'
-import { createAvatar } from '@dicebear/avatars'
-import * as style from '@dicebear/avatars-bottts-sprites'
 import WalletGraph from '../../components/MyPortfolio/WalletGraph'
+import { CryptoAvatar } from '../../globalComponents'
 
 const MyPortfolio = ({ inVisible, onVisible, visible }) => {
-  let svg = createAvatar(style, {
-    seed: 'vuthy',
-    dataUri: true,
-    size: 64,
-    backgroundColor: 'rgba(243, 119, 71, 0.21)',
-    scale: 80,
-  })
-
   return (
     <>
       <Row gutter={16}>
@@ -76,7 +67,7 @@ const MyPortfolio = ({ inVisible, onVisible, visible }) => {
                     </div>
                     <div className="portfolio-staking-token">
                       <div>
-                        <Avatar src={svg} />
+                        <CryptoAvatar addrees="seXPXpZ2gRzTwduXWHngtT8F2X9azCwKDoLphmTY73aTwPfuU" />
                         <span className="portfolio-validator-name">BETA</span>
                       </div>
                       <p>Validator</p>
@@ -115,14 +106,14 @@ const MyPortfolio = ({ inVisible, onVisible, visible }) => {
                     </div>
                     <div className="portfolio-staking-token">
                       <div>
-                        <Avatar src={svg} />
+                        <CryptoAvatar addrees="seXPXpZ2gRzTwduXWHngtT8F2X9azCwKDoLphmTY73aTwPfuU" />
                         <span className="portfolio-validator-name">BETA</span>
                       </div>
                       <p>Validator</p>
                     </div>
                     <div className="portfolio-staking-token">
                       <p>
-                        <strong>350.00%</strong>
+                        <strong>**********</strong>
                       </p>
                       <p>APR</p>
                     </div>

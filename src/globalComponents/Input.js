@@ -16,13 +16,14 @@ Input.Text = function InputText({ medium, ...restProps }) {
     />
   )
 }
-Input.Number = function InputNumber({ medium, ...restProps }) {
+Input.Number = function InputNumber({ no_afterfix, medium, ...restProps }) {
   return (
     <AntInputNumber
       {...restProps}
       className={`
         funan-inputNumber
         ${medium && 'funan-inputMediumNumber'}
+        ${no_afterfix && 'funan-inputMediumNumber-2'}
       `}
     />
   )

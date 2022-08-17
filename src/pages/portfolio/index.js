@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Tabs } from 'antd'
-import Send from './send'
-import Receive from './receive'
-import MyPortfolio from './my-portfolio'
 import { useNavigate } from 'react-router-dom'
+import MyPortfolio from './my-portfolio'
+import Receive from './receive'
+import Send from './send'
 
 const { TabPane } = Tabs
 
@@ -24,8 +24,8 @@ const Portfolio = () => {
   }, [navigate])
 
   return (
-    <Tabs defaultActiveKey="/selendra">
-      <TabPane tab="Selendra" key="/selendra">
+    <Tabs defaultActiveKey="/overview">
+      <TabPane tab="Overview" key="/overview">
         <MyPortfolio
           visible={visible}
           onVisible={onVisible}

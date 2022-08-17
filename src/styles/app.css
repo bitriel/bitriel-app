@@ -583,6 +583,32 @@ i {
   }
 }
 
+@-webkit-keyframes staking {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 #f27649;
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 8px rgba(204, 169, 44, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
+@keyframes staking {
+  0% {
+    -moz-box-shadow: 0 0 0 0 #f27649;
+    box-shadow: 0 0 0 0 #f27649;
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 8px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 8px rgba(204, 169, 44, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
+
 .home-wallet-container {
   display: grid;
   grid-template-columns: auto auto;
@@ -709,6 +735,111 @@ i {
 .swap-rates {
   color: var(--secondary) !important;
 }
+
+.staking-overview {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  column-gap: 150px !important;
+}
+.is-staking {
+  font-size: 20px !important;
+  color: var(--primary) !important;
+  animation: staking 2s infinite;
+  border-radius: 50px;
+  width: 15px;
+  height: 15px;
+}
+.details {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  justify-content: center;
+  cursor: pointer;
+}
+.cards-footer {
+  background: var(--orange-gradient-icon) !important;
+  position: absolute;
+  bottom: 0px;
+  height: 50px;
+  width: 95% !important;
+  border-radius: 0px 0px 16px 16px;
+  text-align: center;
+  justify-content: center;
+  padding-top: 12px;
+  font-size: 16px !important;
+  font-weight: 600;
+}
+.cards-footer2 {
+  background: var(--orange-gradient-icon) !important;
+  position: absolute;
+  bottom: 0px;
+  height: 50px;
+  width: 93% !important;
+  border-radius: 0px 0px 16px 16px;
+  text-align: center;
+  justify-content: center;
+  padding-top: 12px;
+  font-size: 16px !important;
+  font-weight: 600;
+}
+.cards-footer h5 {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+.card-background-launchpad {
+  position: relative;
+  margin: 0 !important;
+  padding: 0;
+  width: 100% !important;
+  left: -34px;
+  top: -38px;
+}
+.background-launchpad-img {
+  height: 250px !important;
+  width: 467px !important;
+  border-radius: 16px 16px 0px 0px;
+}
+.launchpad-logo-container {
+  position: absolute;
+  top: 200px;
+  left: 51%;
+  margin-left: -50px;
+}
+.launchpad-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 100px;
+  background-color: var(--background);
+  border: 2px solid var(--secondary);
+  padding: 5px;
+}
+.launchpad-bio {
+  color: var(--secondary) !important;
+  font-size: 14px !important;
+}
+.launchpad-desc {
+  color: var(--text-gray) !important;
+  padding-top: 10px !important;
+}
+.launchpad-desc-container {
+  margin-bottom: 30px;
+}
+
+.launchpad-desc-container p {
+  color: var(--text-gray) !important;
+  padding-top: 10px !important;
+}
+
+.launchpad-banner {
+  height: 340px;
+  width: 100%;
+  border-radius: 16px;
+}
+.raise-goal {
+  color: var(--primary) !important;
+}
+
 /* ================responsive ================ */
 
 @media screen and (max-width: 1600px) {

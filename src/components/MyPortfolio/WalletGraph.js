@@ -1,5 +1,6 @@
 import React from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Card } from '../../globalComponents'
 import sel from '../../assets/tokens/sel.png'
 import busd from '../../assets/tokens/busd.png'
@@ -8,6 +9,8 @@ import dai from '../../assets/tokens/dai.png'
 import eth from '../../assets/tokens/eth.png'
 import bnb from '../../assets/tokens/bnb.png'
 import TokenBalance from '../TokenBalance'
+
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 const WalletGraph = ({ visible }) => {
   const tokens = [

@@ -1,73 +1,79 @@
-import { Row, Col, Radio } from "antd";
-import { Card, Button } from "globalComponents";
-import { useTheme } from "next-themes";
-import { useAddSELToken } from "../hooks/useAddSELToken";
+import { Row, Col, Radio } from 'antd'
+import { Card, Button } from 'globalComponents'
+import { useTheme } from 'next-themes'
+import { useAddSELToken } from '../hooks/useAddSELToken'
 
 export default function Settings() {
-  const { theme, setTheme } = useTheme();
-  const [handleAddSELToken] = useAddSELToken();
+  const { theme, setTheme } = useTheme()
+  const [handleAddSELToken] = useAddSELToken()
 
   function onChange(e) {
-    setTheme(e.target.value);
+    setTheme(e.target.value)
   }
 
   const socialMedia = [
     {
-      icon: "ri-telegram-fill",
-      link: "",
+      icon: 'ri-telegram-fill',
+      link: '',
     },
     {
-      icon: "ri-facebook-fill",
-      link: "",
+      icon: 'ri-facebook-fill',
+      link: '',
     },
     {
-      icon: "ri-twitter-fill",
-      link: "",
+      icon: 'ri-twitter-fill',
+      link: '',
     },
     {
-      icon: "ri-linkedin-fill",
-      link: "",
+      icon: 'ri-linkedin-fill',
+      link: '',
     },
     {
-      icon: "ri-medium-fill",
-      link: "",
+      icon: 'ri-medium-fill',
+      link: '',
     },
     {
-      icon: "ri-github-fill",
-      link: "",
+      icon: 'ri-github-fill',
+      link: '',
     },
-  ];
+  ]
 
   return (
     <div>
       {/* === >>> Wallet Section <<< === */}
       <h2>Selendra Wallet</h2>
-      <Card>
+      <Card.Auto>
         <div className="setting__padding">
-          <h2>Theme</h2><br />
+          <h2>Theme</h2>
+          <br />
           <Radio.Group onChange={onChange} value={theme}>
-            <Radio value='light'>Light</Radio>
-            <Radio value='dark'>Dark</Radio>
+            <Radio value="light">Light</Radio>
+            <Radio value="dark">Dark</Radio>
           </Radio.Group>
         </div>
-      </Card>
+      </Card.Auto>
       <br />
       {/* === >>> MetaMask Section <<< === */}
       <h2>Metamask</h2>
-      <Card>
+      <Card.Auto>
         <div className="setting__padding">
           <h2>Assets</h2>
           <Row className="metamask-section" gutter={[0, 20]}>
             <Col>
-              <Button.Primary className="add-mainnet" onClick={handleAddSELToken}>Add SEL Token</Button.Primary>
+              <Button.Primary
+                className="add-mainnet"
+                onClick={handleAddSELToken}
+              >
+                Add SEL Token
+              </Button.Primary>
             </Col>
           </Row>
         </div>
-      </Card>
+      </Card.Auto>
       <br />
       {/* === >>> Link Section <<< === */}
       <h2>Links</h2>
-      <Card>
+      <Card.Auto>
         <div className="setting__padding">
           <a href="/setting">
             <p>How to use Selendra fWallet </p>
@@ -78,12 +84,12 @@ export default function Settings() {
           </a>
 
           <div className="setting-social-media">
-            { socialMedia.map((res) => 
+            {socialMedia.map((res) => (
               <i class={res.icon}></i>
-            )}
+            ))}
           </div>
         </div>
-      </Card>
+      </Card.Auto>
     </div>
-  );
+  )
 }

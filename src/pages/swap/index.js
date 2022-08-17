@@ -9,7 +9,7 @@ import dai from '../../assets/tokens/dai.png'
 import eth from '../../assets/tokens/eth.png'
 import bnb from '../../assets/tokens/bnb.png'
 import sel from '../../assets/tokens/sel.png'
-import { Liquidity } from '../../components/swap/liquidity'
+import { Liquidity } from '../../components/Swap/index'
 
 const { TabPane } = Tabs
 const { Option } = Select
@@ -151,7 +151,7 @@ const Swap = () => {
         </Card>
       </TabPane>
       <TabPane tab="Liquidity" key="/liquidity">
-        {/* <Liquidity /> */}
+        <Liquidity />
       </TabPane>
     </Tabs>
   )

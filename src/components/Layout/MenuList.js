@@ -34,8 +34,6 @@ export default function MenuList() {
   const location = useLocation()
   const active = (path) => path === location.pathname
 
-  console.log(theme)
-
   const sidebarTop = routes.map((i) => {
     if (!i.name) return null
     return {
