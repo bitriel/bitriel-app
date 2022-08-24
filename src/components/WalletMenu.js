@@ -1,17 +1,28 @@
 import { Col, Row, Spin, Avatar } from 'antd'
 import { Card } from 'globalComponents'
 import { useFetchBalanceSEL } from '../hooks/useFetchBalanceSEL'
-import { useSubstrateState } from '../context/SubstrateContext'
+import { useSubstrateState, useSubstrate } from '../context/SubstrateContext'
 import { createAvatar } from '@dicebear/avatars'
 import * as style from '@dicebear/avatars-bottts-sprites'
 import iconSwitch from 'assets/icons/switch.svg'
+import wallet from 'assets/icons/wallet.svg'
 import ButtonConnect from './AccountSelector/ButtonConnect'
+import ModalSelectAccount from './AccountSelector/ModalSelectAccount'
+import { useState, useEffect } from 'react'
+import { useAccounts } from '../hooks/useAccounts'
 
 const address = (addr) => (addr ? addr.address : '')
 
 export default function WalletMenu({ children }) {
+  const { allAccounts } = useAccounts()
   const { currentAccount, api } = useSubstrateState()
+  const {
+    setCurrentAccount,
+    state: { keyring },
+  } = useSubstrate()
   const [state] = useFetchBalanceSEL(address(currentAccount), 'Selendra', api)
+  const [modal, setModal] = useState(false)
+  const [keyringOptions, setKeyringOptions] = useState([])
 
   let avatar = createAvatar(style, {
     seed: address(currentAccount),
@@ -21,10 +32,23 @@ export default function WalletMenu({ children }) {
     scale: 80,
   })
 
+  //===getting keyring =======
+
+  useEffect(() => {
+    // Get the list of accounts
+    const keyringOptions = allAccounts.map((account) => ({
+      key: account,
+      value: account,
+      icon: 'user',
+    }))
+
+    setKeyringOptions(keyringOptions)
+  }, [allAccounts])
+
   return (
     <div>
       <Row gutter={(24, 24)}>
-        <Col span={18}>
+        <Col xs={24} sm={24} md={16} lg={16} xl={18} xxl={18}>
           <Card.Auto>
             <h4 style={{ wordBreak: 'break-all' }}>
               <Avatar src={avatar} size={40} />
@@ -37,39 +61,23 @@ export default function WalletMenu({ children }) {
           <br />
           <Card>{children}</Card>
         </Col>
-        <Col span={6}>
+        <Col xs={0} sm={0} md={8} lg={8} xl={6} xxl={6}>
           <Card.Auto>
             <Row gutter={[8, 8]} align="middle">
-              {/* <Col xs={12} sm={12} md={4} lg={4} xl={4}>
-                <div
-                  className={`wallet-tabs ${
-                    pathname === '/wallet/send' && 'wallet-tabs-active'
-                  }`}
-                >
-                  <Link to="/wallet/send">
-                    <img src={send} alt="" height={50} />
-                    <p>Send</p>
-                  </Link>
-                </div>
-              </Col>
-              <Col xs={12} sm={12} md={4} lg={4} xl={4}>
-                <div
-                  className={`wallet-tabs ${
-                    pathname === '/wallet/receive' && 'wallet-tabs-active'
-                  }`}
-                >
-                  <Link to="/wallet/receive">
-                    <img src={receive} alt="" height={50} />
-                    <p>Recieve</p>
-                  </Link>
-                </div>
-              </Col> */}
-              <Col span={24}>
-                <ButtonConnect
-                  className="home-create-wallet"
-                  icon={iconSwitch}
-                  title="Switch Account"
-                />
+              <Col span={24} onClick={() => setModal(true)}>
+                {keyringOptions.length > 1 ? (
+                  <ButtonConnect
+                    className="home-create-wallet"
+                    icon={iconSwitch}
+                    title="Switch Account"
+                  />
+                ) : (
+                  <ButtonConnect
+                    className="home-create-wallet"
+                    icon={wallet}
+                    title="Current Account"
+                  />
+                )}
               </Col>
               <Col span={24}>
                 <Row justify="center">
@@ -103,6 +111,14 @@ export default function WalletMenu({ children }) {
           </Card.Auto>
         </Col>
       </Row>
+      <ModalSelectAccount
+        accounts={keyringOptions}
+        keyring={keyring}
+        currentAccount={currentAccount}
+        setCurrentAccount={setCurrentAccount}
+        visible={modal}
+        setVisible={setModal}
+      />
     </div>
   )
 }

@@ -97,9 +97,9 @@ const WalletGraph = ({ visible }) => {
       <div className="graph-container">
         <Doughnut data={data} />
       </div>
-      <div className="home-buttons-options-container">
+      {/* <div className="home-buttons-options-container">
         {visible ? <VisibleToken /> : <InVisibleToken />}
-      </div>
+      </div> */}
     </Card.Auto>
   )
 }

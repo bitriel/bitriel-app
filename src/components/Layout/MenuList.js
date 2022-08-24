@@ -115,18 +115,19 @@ export default function MenuList() {
         items={sidebarBottom}
       />
       <Row gutter={[6, 0]} justify="center" className="about-container">
-        <Col span={20} className="about">
+        <Col xs={12} sm={12} md={20} lg={20} xl={20} xxl={20} className="about">
           <center>
             <a
               target="_blank"
               rel="noreferrer"
               href="https://github.com/selendra"
             >
-              Github
+              <i className="ri-github-fill github-icon"></i>
+              <span className="github">Github</span>
             </a>
           </center>
         </Col>
-        <Col span={4}>
+        <Col xs={12} sm={12} md={4} lg={4} xl={4} xxl={4}>
           {theme === 'light' ? (
             <i
               onClick={() => setTheme('dark')}

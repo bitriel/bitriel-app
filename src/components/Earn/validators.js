@@ -5,14 +5,6 @@ import validators from './data/validator.json'
 
 export const Validators = () => {
   const columns = [
-    // {
-    //   title: '',
-    //   dataIndex: 'validator_address',
-    //   key: 'validator_name',
-    //   render: (validator_address) => {
-    //     return <CryptoAvatar addrees={validator_address} />
-    //   },
-    // },
     {
       title: 'Validators',
       dataIndex: 'validator_name',
@@ -22,7 +14,7 @@ export const Validators = () => {
           <>
             <Space>
               <CryptoAvatar addrees={record.validator_address} />
-              <p>{record.validator_name}</p>
+              <p>{validator_name}</p>
             </Space>
           </>
         )
@@ -32,6 +24,7 @@ export const Validators = () => {
       title: 'Total Stake',
       dataIndex: 'total_stake',
       key: 'total_stake',
+      responsive: ['sm'],
     },
     {
       title: 'COMM',

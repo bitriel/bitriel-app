@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 import MobileDrawer from './MobileDrawer'
 import Navbar from './Navbar'
 
-const { Header, Footer, Content } = Layout
+const { Footer, Content } = Layout
 
 export default function LayoutComponent({ children }) {
   useEffect(() => {

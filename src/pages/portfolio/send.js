@@ -60,10 +60,10 @@ export default function Send() {
   return (
     <WalletMenu>
       <Form layout="vertical">
-        <Form.Item label="Destination">
+        <Form.Item label="To">
           <Input.Text
             medium
-            placeholder="Enter Destination"
+            placeholder="To address"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
           />

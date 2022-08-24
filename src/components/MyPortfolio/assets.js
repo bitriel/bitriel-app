@@ -76,9 +76,9 @@ const Assets = () => {
 
   return (
     <>
-      <p className="home-title">Assets</p>
       <div className="profile-desc">
         <Card style={{ borderRadius: '8px' }}>
+          <p className="home-title">Assets</p>
           {account ? (
             <div>
               {loading ? (

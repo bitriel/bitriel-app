@@ -51,7 +51,7 @@ export const Pools = () => {
 
               return (
                 <>
-                  <Col span={12}>
+                  <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
                     <Card key={index}>
                       <div className="portfolio-staking-token">
                         <div>

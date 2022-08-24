@@ -152,6 +152,10 @@ i {
 .create-restore-buttons {
   padding-top: 50px;
 }
+.button-connect {
+  width: 30px;
+  margin: 0px;
+}
 .apps-section {
   /* width: 70%; */
   min-height: 34vh;
@@ -185,6 +189,16 @@ i {
 
 /*===>> END NOT AUTHENTICATED <<===*/
 /*===>> SIDEBAR <<===*/
+.github-icon {
+  font-size: 20px;
+  position: relative;
+  /* top: 3px; */
+  right: 5px;
+}
+.github {
+  position: relative;
+  top: -5px;
+}
 .wrapper {
   margin-left: 250px;
   backdrop-filter: blur(16px) saturate(180%);
@@ -209,7 +223,8 @@ i {
 }
 .ant-layout-sider {
   background: var(--sidebar) !important;
-  box-shadow: 2px 4px 4px rgba(79, 52, 137, 0.25) !important;
+  /* box-shadow: 2px 4px 4px rgba(79, 52, 137, 0.25) !important; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .ant-menu-item {
   height: 55px !important;
@@ -255,8 +270,12 @@ i {
 .mobile-drawer-header {
   padding: 15px 15px;
   padding-top: 8px;
-  background-color: var(--background);
+  background-color: var(--background) !important;
   display: none !important;
+}
+
+.mobile-drawer {
+  overflow: hidden !important;
 }
 .ant-drawer-body {
   padding: 0 !important;
@@ -265,18 +284,20 @@ i {
 /*===>> END SIDEBAR <<===*/
 /*===>> HOME <<===*/
 .home-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 38.832px;
+  position: absolute;
+  top: 10px;
 }
 .home-spacing {
   padding: 16px 0;
 }
 .home-btn-wrapper img {
-  padding: 10px;
-  border-radius: 33px;
-  height: 90px;
-  width: 90px;
+  padding: 15px;
+  border-radius: 25px;
+  height: 60px;
+  width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -316,7 +337,7 @@ i {
   margin: 8px 0;
 }
 .modal-select-account-item:hover {
-  border-color: #03a9f4;
+  border-color: var(--primary) !important;
 }
 .modal-select-account-item p {
   font-weight: 500;
@@ -701,8 +722,9 @@ i {
   margin-left: 10px;
 }
 .graph-container {
-  width: 300px;
+  width: 390px;
   margin: auto;
+  padding-bottom: 40px;
 }
 
 .react-qrcode-logo {
@@ -847,6 +869,20 @@ i {
     position: absolute;
     left: -300px;
   }
+  .container {
+    max-width: 45rem !important;
+  }
+  .about-container {
+    padding-top: 50px !important;
+  }
+  .home-btn-wrapper img {
+    width: 70px;
+    height: 70px;
+    border-radius: 25px;
+  }
+  .connect-evm {
+    margin-right: 250px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -866,6 +902,44 @@ i {
     width: 900px;
     margin: auto;
     display: grid;
+  }
+  .connect-evm {
+    margin-right: 27px;
+  }
+  .about-container {
+    padding-top: 320px !important;
+  }
+  .my-portfolio {
+    width: 90px;
+    height: 90px;
+    padding: 12px;
+    border-radius: 36px;
+  }
+  .portfolio-money {
+    font-size: 27px !important;
+  }
+  .graph-container {
+    width: 230px;
+  }
+  .swap-form-container {
+    padding: 30px;
+  }
+  .background-launchpad-img {
+    height: 200px !important;
+    width: 346px !important;
+  }
+  .launchpad-logo-container {
+    position: absolute;
+    top: 140px;
+  }
+  .cards-footer2 {
+    width: 90% !important;
+  }
+  .portfolio-sel-transparent {
+    width: 130px !important;
+  }
+  .receive-address {
+    font-size: 13px;
   }
 }
 
@@ -901,12 +975,15 @@ i {
     height: 45px !important;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 812px) {
+  .about-container {
+    padding-top: 460px !important;
+  }
   .container {
     padding: 0 16px;
   }
   .mobile-drawer-header {
-    display: block;
+    display: flex !important;
   }
   .index-container {
     padding: 0 24px;
@@ -921,9 +998,34 @@ i {
     display: flex;
     justify-content: center;
   }
+  .connect-evm {
+    margin-right: 60px;
+  }
 }
 
 @media screen and (max-width: 600px) {
+  .staking-overview {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 27px !important;
+  }
+  .mobile-drawer-header {
+    display: flex !important;
+  }
+  .wrapper .wrapper-sub-background {
+    padding: 20px 0px;
+  }
+  .swap-form-container {
+    padding: 0px;
+  }
+  .connect-evm {
+    margin-right: 17px;
+    display: none;
+  }
+  .about-container {
+    padding-top: 250px !important;
+  }
   .welcome-message {
     font-size: 26px;
   }

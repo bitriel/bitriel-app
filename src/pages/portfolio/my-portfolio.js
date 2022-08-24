@@ -11,8 +11,8 @@ import { CryptoAvatar } from '../../globalComponents'
 const MyPortfolio = ({ inVisible, onVisible, visible }) => {
   return (
     <>
-      <Row gutter={16}>
-        <Col span={12}>
+      <Row gutter={[16, 16]}>
+        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
           <Row gutter={[16, 16]}>
             <Col span={24}>
               <Card.Auto>
@@ -142,7 +142,7 @@ const MyPortfolio = ({ inVisible, onVisible, visible }) => {
             </Col>
           </Row>
         </Col>
-        <Col span={12}>
+        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
           <WalletGraph visible={visible} />
         </Col>
 

@@ -29,30 +29,44 @@ export default function Home() {
 
   return (
     <div>
-      <Row gutter={24}>
-        <Col span={12}>
-          <AccountSelector keyringOptions={keyringOptions} />
-        </Col>
-        <Col span={12}>
-          <div>
+      <Row gutter={[24, 24]}>
+        <Col span={24}>
+          <Row gutter={[24, 12]}>
+            <Col xs={24} sm={25} md={12} lg={12} xl={12} xxl={12}>
+              <AccountSelector keyringOptions={keyringOptions} />
+            </Col>
             {!account && keyringOptions.length === 0 && (
-              <Card>
-                <p>You don't have any wallet yet.</p>
-              </Card>
+              <Col xs={24} sm={25} md={12} lg={12} xl={12} xxl={12}>
+                <Card>
+                  <p>You don't have any wallet yet.</p>
+                </Card>
+              </Col>
             )}
+
             {/* Selendra wallet */}
             {keyringOptions.length > 0 &&
               keyringOptions.map((account, key) => (
-                <Wallet key={key} account={account.value} type="Selendra" />
+                <Col xs={24} sm={25} md={12} lg={12} xl={12} xxl={12}>
+                  <Wallet key={key} account={account.value} type="Selendra" />
+                </Col>
               ))}
-            {/* Metamask wallet */}
+          </Row>
+        </Col>
+
+        {/* Metamask wallet */}
+        <Col span={24}>
+          <Row gutter={[24, 24]}>
             {account && (
-              <Wallet
-                account={account}
-                type={isTrust ? 'Trust Wallet' : 'Metamask'}
-              />
+              <Col xs={24} sm={25} md={12} lg={12} xl={12} xxl={12}>
+                <h2>Others account</h2>
+                <br />
+                <Wallet
+                  account={account}
+                  type={isTrust ? 'Trust Wallet' : 'Metamask'}
+                />
+              </Col>
             )}
-          </div>
+          </Row>
         </Col>
       </Row>
     </div>

@@ -1,7 +1,7 @@
 import { Row, Col } from 'antd'
 import { useTheme } from 'next-themes'
 import { Button } from 'globalComponents'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import RestoreWallet from 'components/RestoreWallet'
 import CreateWallet from 'components/CreateWallet'
 import logoWhite from 'assets/BITRIEL.svg'
@@ -15,17 +15,29 @@ import appleWhite from 'assets/icons/apple-white.svg'
 import apple from 'assets/icons/apple.svg'
 import mobile from 'assets/bitriel-3.svg'
 import selTransparent from 'assets/SEL-coin-transparent.png'
+import { AccountContext } from '../context/AccountContext'
+import ModalEVM from '../components/Wallet/ModalEVM'
 
 export default function Index() {
   const { theme } = useTheme()
   const [visible, setVisible] = useState(false)
   const [createWalletVisible, setCreateWalletVisible] = useState(false)
+  const { account } = useContext(AccountContext)
+  const [connect, setConnect] = useState(false)
 
   const onVisible = () => {
     setVisible(!visible)
   }
   const handleCreateWalletVisible = () => {
     setCreateWalletVisible(!createWalletVisible)
+  }
+
+  const onConnect = () => {
+    setConnect(true)
+  }
+
+  const onCancel = () => {
+    setConnect(false)
   }
 
   // useEffect(() => {
@@ -37,7 +49,6 @@ export default function Index() {
       <div className="index-top-section">
         <div className="index-container">
           <img src={logoWhite} alt="" className="logo" />
-
           <Row>
             <Col xs={24} sm={24} md={18} lg={18} xl={18} xxl={18}>
               <img src={selTransparent} alt="" className="coin-transparent" />
@@ -49,7 +60,7 @@ export default function Index() {
                 </h4>
                 <div className="create-restore-buttons">
                   <Row gutter={[15, 15]}>
-                    <Col xs={24} sm={12} md={10} lg={10} xl={9} xxl={9}>
+                    <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
                       <Button.Third
                         large
                         block
@@ -64,7 +75,7 @@ export default function Index() {
                         Create Wallet
                       </Button.Third>
                     </Col>
-                    <Col xs={24} sm={12} md={10} lg={10} xl={9} xxl={9}>
+                    <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
                       <Button.Third large block onClick={onVisible}>
                         <img
                           src={restoreWallet}
@@ -73,6 +84,26 @@ export default function Index() {
                         />
                         Restore Wallet
                       </Button.Third>
+                    </Col>
+                    <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+                      {account ? (
+                        <Button.GradientBorder
+                          onClick={() => setConnect(true)}
+                          medium
+                        >
+                          Disconnect
+                        </Button.GradientBorder>
+                      ) : (
+                        <Button.Third large block onClick={onConnect}>
+                          <img
+                            src={createWallet}
+                            style={{ color: '#FFF' }}
+                            alt=""
+                            className="create-wallet-img"
+                          />
+                          Connect EVM
+                        </Button.Third>
+                      )}
                     </Col>
                   </Row>
                 </div>
@@ -161,6 +192,7 @@ export default function Index() {
         setVisible={setCreateWalletVisible}
       />
       <RestoreWallet visible={visible} setVisible={setVisible} />
+      <ModalEVM connect={connect} onCancel={onCancel} />
     </div>
   )
 }

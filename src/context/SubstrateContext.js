@@ -1,9 +1,9 @@
-import React from "react";
-import { ApiPromise, WsProvider } from "@polkadot/api";
-import { keyring as Keyring } from "@polkadot/ui-keyring";
-import { selendra } from "../constants/node";
+import React from 'react'
+import { ApiPromise, WsProvider } from '@polkadot/api'
+import { keyring as Keyring } from '@polkadot/ui-keyring'
+import { selendra } from '../constants/node'
 
-const Connected = localStorage.getItem('current-account');
+const Connected = localStorage.getItem('current-account')
 const initialState = {
   // These are the states
   socket: selendra.testnet,
@@ -16,8 +16,8 @@ const initialState = {
   currentAccount: null,
   consts: {
     expectedBlockTime: 0,
-    existentialDeposit: 0
-  }
+    existentialDeposit: 0,
+  },
 }
 
 const reducer = (state, action) => {
@@ -41,7 +41,7 @@ const reducer = (state, action) => {
     case 'SET_CURRENT_ACCOUNT':
       return { ...state, currentAccount: action.payload }
     case 'SET_CONSTS':
-      return { ...state, consts: action.payload}
+      return { ...state, consts: action.payload }
     default:
       throw new Error(`Unknown type: ${action.type}`)
   }
@@ -49,113 +49,111 @@ const reducer = (state, action) => {
 
 // connect to node
 const connect = (state, dispatch) => {
-  const { apiState, socket } = state;
+  const { apiState, socket } = state
   // We only want this function to be performed once
-  if (apiState) return;
+  if (apiState) return
 
-  dispatch({ type: 'CONNECT_INIT' });
+  dispatch({ type: 'CONNECT_INIT' })
 
-  const provider = new WsProvider(socket);
-  const _api = new ApiPromise({ provider });
+  const provider = new WsProvider(socket)
+  const _api = new ApiPromise({ provider })
 
-  const decimals = _api.registry.chainDecimals;
-  dispatch({ type: 'SET_DECIMALS', payload: decimals[0] });
-  
+  const decimals = _api.registry.chainDecimals
+  dispatch({ type: 'SET_DECIMALS', payload: decimals[0] })
+
   // Set listeners for disconnection and reconnection event.
   _api.on('connected', () => {
-    dispatch({ type: 'CONNECT', payload: _api });
+    dispatch({ type: 'CONNECT', payload: _api })
     // `ready` event is not emitted upon reconnection and is checked explicitly here.
-    _api.isReady.then(_api => {
-      dispatch({ type: 'CONNECT_SUCCESS' });
-    });
-    console.log(`Connected socket: ${socket}`);
-  });
-  _api.on('ready', () => dispatch({ type: 'CONNECT_SUCCESS' }));
-  _api.on('error', err => dispatch({ type: 'CONNECT_ERROR', payload: err }));
+    _api.isReady.then((_api) => {
+      dispatch({ type: 'CONNECT_SUCCESS' })
+    })
+    console.log(`Connected socket: ${socket}`)
+  })
+  _api.on('ready', () => dispatch({ type: 'CONNECT_SUCCESS' }))
+  _api.on('error', (err) => dispatch({ type: 'CONNECT_ERROR', payload: err }))
 }
 
 // Loading accounts from browser
 const loadAccounts = (state, dispatch) => {
-  dispatch({ type: 'LOAD_KEYRING' });
-  
+  dispatch({ type: 'LOAD_KEYRING' })
+
   const asyncLoadAccounts = async () => {
     try {
-      Keyring.loadAll({ ss58Format: 204, type: 'sr25519' });
-      dispatch({ type: 'SET_KEYRING', payload: Keyring });
+      Keyring.loadAll({ ss58Format: 204, type: 'sr25519' })
+      dispatch({ type: 'SET_KEYRING', payload: Keyring })
 
       // Get current active account
-      if(Connected) {
-        dispatch({ 
-          type: 'SET_CURRENT_ACCOUNT', 
-          payload: getKeypair(Connected) 
-        });
+      if (Connected) {
+        dispatch({
+          type: 'SET_CURRENT_ACCOUNT',
+          payload: getKeypair(Connected),
+        })
       }
-    } catch(e) {
-      console.error(e);
-      dispatch({ type: 'KEYRING_ERROR' });
+    } catch (e) {
+      console.error(e)
+      dispatch({ type: 'KEYRING_ERROR' })
     }
   }
-  asyncLoadAccounts();
+  asyncLoadAccounts()
 }
 
 const fetchConsts = async (state, dispatch) => {
-  const { apiState, api } = state;
-  if(apiState !== 'READY' || !api) return;
+  const { apiState, api } = state
+  if (apiState !== 'READY' || !api) return
   try {
-    const promise = await Promise.all([ 
+    const promise = await Promise.all([
       await api.consts.babe.expectedBlockTime,
-      await api.consts.balances.existentialDeposit
-    ]);
-    dispatch({ 
-      type: 'SET_CONSTS', 
+      await api.consts.balances.existentialDeposit,
+    ])
+    dispatch({
+      type: 'SET_CONSTS',
       payload: {
         expectedBlockTime: promise[0],
-        existentialDeposit: promise[1]
-      }
-    });
-  } catch(error){
-    
-  }
+        existentialDeposit: promise[1],
+      },
+    })
+  } catch (error) {}
 }
 
 function getKeypair(addr) {
   try {
-    return Keyring.getPair(addr);
+    return Keyring.getPair(addr)
   } catch (error) {
     // if account removed return null
-    return null;
+    return null
   }
 }
 
-let keyringLoadAll = false;
+let keyringLoadAll = false
 
-const SubstrateContext = React.createContext();
-const SubstrateContextProvider = ({children}) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState);
-  connect(state, dispatch);
+const SubstrateContext = React.createContext()
+const SubstrateContextProvider = ({ children }) => {
+  const [state, dispatch] = React.useReducer(reducer, initialState)
+  connect(state, dispatch)
 
   React.useEffect(() => {
     const { apiState, keyringState } = state
     if (apiState === 'READY' && !keyringState && !keyringLoadAll) {
-      keyringLoadAll = true;
-      loadAccounts(state, dispatch);
+      keyringLoadAll = true
+      loadAccounts(state, dispatch)
       // keyringLoadAll = false
-      fetchConsts(state, dispatch);
+      fetchConsts(state, dispatch)
     }
-  }, [state, dispatch]);
+  }, [state, dispatch])
 
   function setCurrentAccount(account) {
-    localStorage.setItem('current-account', account.address);
-    dispatch({ type: 'SET_CURRENT_ACCOUNT', payload: account });
+    localStorage.setItem('current-account', account.address)
+    dispatch({ type: 'SET_CURRENT_ACCOUNT', payload: account })
   }
-  
+
   return (
-    <SubstrateContext.Provider 
-      value={{ 
-        state, 
-        dispatch, 
-        loadAccounts, 
-        setCurrentAccount 
+    <SubstrateContext.Provider
+      value={{
+        state,
+        dispatch,
+        loadAccounts,
+        setCurrentAccount,
       }}
     >
       {children}
@@ -163,7 +161,7 @@ const SubstrateContextProvider = ({children}) => {
   )
 }
 
-const useSubstrate = () => React.useContext(SubstrateContext);
-const useSubstrateState = () => React.useContext(SubstrateContext).state;
+const useSubstrate = () => React.useContext(SubstrateContext)
+const useSubstrateState = () => React.useContext(SubstrateContext).state
 
-export { SubstrateContextProvider, useSubstrate, useSubstrateState };
+export { SubstrateContextProvider, useSubstrate, useSubstrateState }

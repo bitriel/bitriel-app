@@ -18,7 +18,6 @@ import { ReactComponent as Edit } from 'assets/icons/edit.svg'
 import { ReactComponent as Copy } from 'assets/icons/copy-red.svg'
 const EditIcon = (props) => <Icon component={Edit} {...props} />
 const CopyIcon = (props) => <Icon component={Copy} {...props} />
-
 const address = (addr) => (addr ? addr.address : '')
 
 export default function AccountSelector({ keyringOptions }) {

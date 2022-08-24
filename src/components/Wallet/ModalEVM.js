@@ -1,13 +1,13 @@
-import { Col, message, Row } from 'antd'
-import { Card } from 'globalComponents'
+import React, { useContext, useState, useEffect } from 'react'
+import { Row, Col, message } from 'antd'
+import { Card, Modal } from './../../globalComponents'
+import metamask from '../../assets/metamask.png'
+import trustwallet from '../../assets/trustwallet.png'
+import ModalMetamask from '../ModalMetamask'
+import { AccountContext } from '../../context/AccountContext'
 import { useNavigate } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
-import { AccountContext } from '../context/AccountContext'
-import ModalMetamask from '../components/ModalMetamask'
-import metamask from '../assets/metamask.png'
-import trustwallet from '../assets/trustwallet.png'
 
-export default function Connect() {
+const ModalEVM = ({ connect, onCancel }) => {
   const { connectMetamask, connectTrust, account } = useContext(AccountContext)
   const navigate = useNavigate()
   const [visible, setVisible] = useState(false)
@@ -19,22 +19,22 @@ export default function Connect() {
     }
   }, [account, navigate])
 
-  function connect() {
+  function onConnect() {
     const { ethereum } = window
     ethereum ? connectMetamask() : setVisible(true)
   }
 
   return (
-    <div>
-      <div className="connect__container">
-        <Card style={{ borderRadius: '12px' }}>
+    <Modal visible={connect} onOk={onCancel} onCancel={onCancel}>
+      <div className="connect__container2">
+        <div>
           <center>
             <h2 className="connect__title">Connect Wallet</h2>
           </center>
           <br />
           <Row gutter={[80, 80]} justify="center">
             <Col>
-              <center className="connect__wallet" onClick={connect}>
+              <center className="connect__wallet" onClick={onConnect}>
                 <img src={metamask} alt="" width={48} />
                 <p>Metamask</p>
               </center>
@@ -46,10 +46,11 @@ export default function Connect() {
               </center>
             </Col>
           </Row>
-        </Card>
+        </div>
       </div>
-
       <ModalMetamask visible={visible} setVisible={setVisible} />
-    </div>
+    </Modal>
   )
 }
+
+export default ModalEVM
