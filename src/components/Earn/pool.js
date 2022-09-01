@@ -7,7 +7,7 @@ import pools from './data/pools.json'
 export const Pools = () => {
   return (
     <>
-      <Row gutter={[24, 24]}>
+      <Row gutter={[16, 16]}>
         <Col span={24}>
           <Card.Auto>
             <h1>Overview</h1>
@@ -37,7 +37,7 @@ export const Pools = () => {
           </Card.Auto>
         </Col>
         <Col span={24}>
-          <Row gutter={[24, 24]}>
+          <Row gutter={[16, 16]}>
             {pools.map((data, index) => {
               const {
                 pool_name,

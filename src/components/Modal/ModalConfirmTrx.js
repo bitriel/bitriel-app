@@ -8,9 +8,6 @@ export default function ModalConfirmTrx({
   setPassword,
   handleTrx,
 }) {
-  console.log('handleTrx', handleTrx)
-  console.log('pass', password)
-
   return (
     <Modal visible={visible} closable={false}>
       <h2>Do you want to send transaction?</h2>

@@ -47,11 +47,11 @@ export default function WalletMenu({ children }) {
 
   return (
     <div>
-      <Row gutter={(24, 24)}>
+      <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={16} lg={16} xl={18} xxl={18}>
           <Card.Auto>
             <h4 style={{ wordBreak: 'break-all' }}>
-              <Avatar src={avatar} size={40} />
+              <Avatar src={avatar} size={40} />       
               &nbsp; &nbsp; &nbsp;
               {address(currentAccount)
                 ? address(currentAccount)
@@ -61,7 +61,7 @@ export default function WalletMenu({ children }) {
           <br />
           <Card>{children}</Card>
         </Col>
-        <Col xs={0} sm={0} md={8} lg={8} xl={6} xxl={6}>
+        {/* <Col xs={0} sm={0} md={8} lg={8} xl={6} xxl={6}>
           <Card.Auto>
             <Row gutter={[8, 8]} align="middle">
               <Col span={24} onClick={() => setModal(true)}>
@@ -109,7 +109,7 @@ export default function WalletMenu({ children }) {
               </Col>
             </Row>
           </Card.Auto>
-        </Col>
+        </Col> */}
       </Row>
       <ModalSelectAccount
         accounts={keyringOptions}

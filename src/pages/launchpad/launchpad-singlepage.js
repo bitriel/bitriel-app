@@ -20,7 +20,7 @@ export const SinglePage = () => {
 
   return (
     <>
-      <Row gutter={[12, 12]}>
+      <Row gutter={[16, 16]}>
         <Col>
           <img alt="" src={sel} className="launchpad-logo" />
         </Col>
@@ -32,7 +32,7 @@ export const SinglePage = () => {
         </Col>
       </Row>
       <br />
-      <Row gutter={[24, 24]}>
+      <Row gutter={[16, 16]}>
         <Col span={16}>
           <img src={back} alt="" className="launchpad-banner" />
         </Col>
@@ -72,38 +72,40 @@ export const SinglePage = () => {
         <TabPane tab="Descriptions" key="Descriptions">
           <Row gutter={[12, 12]}>
             <Col span={20}>
-              <ul>
-                <li>
-                  Unreal Engine 5 provides stunning photo-realistic graphics and
-                  boundless opportunities for interoperability with other
-                  metaverses.
-                </li>
-                <li>
-                  Collaboration with world-renowned urban city planners
-                  responsible for designing parts of real-world major cities.
-                </li>
-                <li>
-                  Cinematic artists recruited from world-class VFX and game
-                  studios.
-                </li>
-                <li>
-                  LAND alteration feature enables flexible control of digital
-                  real estate, unlocking customization through LAND Sharing and
-                  Compilation.
-                </li>
-                <li>
-                  Flexible building tools invite users of all skill levels to
-                  enjoy seamless and intuitive creation experiences.
-                </li>
-                <li>
-                  Immersive social engagement layers include the Prana system
-                  and collaborative LAND clearing incentives.
-                </li>
-                <li>
-                  Curated PvP Dome unlocks social viewing experiences and
-                  win2earn opportunities for participants.
-                </li>
-              </ul>
+              <div className="launchpad-desc-container2">
+                <ul>
+                  <li>
+                    Unreal Engine 5 provides stunning photo-realistic graphics
+                    and boundless opportunities for interoperability with other
+                    metaverses.
+                  </li>
+                  <li>
+                    Collaboration with world-renowned urban city planners
+                    responsible for designing parts of real-world major cities.
+                  </li>
+                  <li>
+                    Cinematic artists recruited from world-class VFX and game
+                    studios.
+                  </li>
+                  <li>
+                    LAND alteration feature enables flexible control of digital
+                    real estate, unlocking customization through LAND Sharing
+                    and Compilation.
+                  </li>
+                  <li>
+                    Flexible building tools invite users of all skill levels to
+                    enjoy seamless and intuitive creation experiences.
+                  </li>
+                  <li>
+                    Immersive social engagement layers include the Prana system
+                    and collaborative LAND clearing incentives.
+                  </li>
+                  <li>
+                    Curated PvP Dome unlocks social viewing experiences and
+                    win2earn opportunities for participants.
+                  </li>
+                </ul>
+              </div>
             </Col>
             <Col span={4}>
               <Anchor affix={false} onChange={onChange}>
@@ -120,10 +122,10 @@ export const SinglePage = () => {
             </Col>
           </Row>
         </TabPane>
-        <TabPane tab="Inventery" key="Inventery">
+        <TabPane tab="Backers" key="backers">
           <NotFound />
         </TabPane>
-        <TabPane tab="Contract Metrics" key="contract">
+        <TabPane tab="Contract" key="contract">
           <NotFound />
         </TabPane>
       </Tabs>

@@ -24,7 +24,7 @@ export default function Wallet({ account, type }) {
   const [visible, setVisible] = useState(false)
 
   return (
-    <div style={{ marginBottom: '24px' }}>
+    <div>
       <Card>
         <Row gutter={[12, 12]} justify="center" align="middle">
           <Col>

@@ -10,7 +10,7 @@ const { Panel } = Collapse
 export const Staking = () => {
   return (
     <>
-      <Row gutter={[24, 24]}>
+      <Row gutter={[16, 16]}>
         <Col span={24}>
           <Card.Auto>
             <h1>Overview</h1>
@@ -40,7 +40,7 @@ export const Staking = () => {
           </Card.Auto>
         </Col>
         <Col span={24}>
-          <Row gutter={[24, 24]}>
+          <Row gutter={[16, 16]}>
             {data.map((validator, index) => {
               const {
                 validator_name,

@@ -6,7 +6,7 @@ import data from './data/launchpad.json'
 export const Launchpad = () => {
   return (
     <>
-      <Row gutter={[24, 24]}>
+      <Row gutter={[16, 16]}>
         {data.map((launchpad) => (
           <Col span={12}>
             <Card.Blog link={`/launchpad/${launchpad.name}`}>

@@ -32,11 +32,7 @@ export function getUsername(address) {
 
 export function shortenAddress(address) {
   if (!address) return
-  return (
-    address.slice(0, 5) +
-    '..................................' +
-    address.slice(-4)
-  )
+  return address.slice(0, 6) + '...' + address.slice(-6)
 }
 
 export function getContract(address, abi, signerOrProvider) {

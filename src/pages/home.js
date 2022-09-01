@@ -28,10 +28,10 @@ export default function Home() {
   }, [allAccounts])
 
   return (
-    <div>
+    <div className="home-container">
       <Row gutter={[24, 24]}>
         <Col span={24}>
-          <Row gutter={[24, 12]}>
+          <Row gutter={[16, 16]}>
             <Col xs={24} sm={25} md={12} lg={12} xl={12} xxl={12}>
               <AccountSelector keyringOptions={keyringOptions} />
             </Col>
@@ -55,7 +55,7 @@ export default function Home() {
 
         {/* Metamask wallet */}
         <Col span={24}>
-          <Row gutter={[24, 24]}>
+          <Row gutter={[16, 16]}>
             {account && (
               <Col xs={24} sm={25} md={12} lg={12} xl={12} xxl={12}>
                 <h2>Others account</h2>
