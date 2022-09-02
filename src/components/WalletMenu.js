@@ -10,6 +10,7 @@ import ButtonConnect from './AccountSelector/ButtonConnect'
 import ModalSelectAccount from './AccountSelector/ModalSelectAccount'
 import { useState, useEffect } from 'react'
 import { useAccounts } from '../hooks/useAccounts'
+import { Button } from '../globalComponents'
 
 const address = (addr) => (addr ? addr.address : '')
 
@@ -50,13 +51,24 @@ export default function WalletMenu({ children }) {
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} md={16} lg={16} xl={18} xxl={18}>
           <Card.Auto>
-            <h4 style={{ wordBreak: 'break-all' }}>
-              <Avatar src={avatar} size={40} />       
-              &nbsp; &nbsp; &nbsp;
-              {address(currentAccount)
-                ? address(currentAccount)
-                : 'Please Create Selendra Wallet'}
-            </h4>
+            <Row>
+              <Col span={22}>
+                <h5 style={{ wordBreak: 'break-all' }}>
+                  <Avatar src={avatar} size={35} />
+                  &nbsp; &nbsp; &nbsp;
+                  {address(currentAccount)
+                    ? address(currentAccount)
+                    : 'Please Create Selendra Wallet'}
+                </h5>
+              </Col>
+              <Col span={2} onClick={() => setModal(true)}>
+                {keyringOptions.length > 1 ? (
+                  <Button.Switch icon={iconSwitch} title="" />
+                ) : (
+                  <Button.Switch icon={wallet} title="Current Account" />
+                )}
+              </Col>
+            </Row>
           </Card.Auto>
           <br />
           <Card>{children}</Card>

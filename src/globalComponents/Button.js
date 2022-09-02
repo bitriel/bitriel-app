@@ -129,3 +129,14 @@ Button.Outline = function ButtonOutline({
     </AntButton>
   )
 }
+
+Button.Switch = function ButtonSwitch({ icon, title }) {
+  return (
+    <div className="home-btn-wrapper-2">
+      <div>
+        <img src={icon} alt="" className="button-connect" />
+      </div>
+      <p>{title}</p>
+    </div>
+  )
+}

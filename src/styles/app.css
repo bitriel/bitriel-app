@@ -307,9 +307,21 @@ i {
   align-items: center;
   cursor: pointer;
 }
-.home-btn-wrapper:hover {
+.home-btn-wrapper:hover,
+.home-btn-wrapper-2:hover {
   filter: brightness(0.8);
   -webkit-filter: brightness(0.8);
+}
+.home-btn-wrapper-2 {
+  padding: 20px !important;
+  border-radius: 18px;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--orange-gradient-icon) !important;
 }
 .home-connect-evm img {
   background-color: #03a8f421;
@@ -327,6 +339,16 @@ i {
 }
 .home-restore-wallet img {
   background-color: var(--red-gradient-icon);
+}
+.switch-account {
+  background-color: var(--orange-gradient-icon);
+  width: 45px;
+  height: 45px;
+  border-radius: 18px;
+}
+.switch-account p {
+  font-weight: 500;
+  color: var(--primary) !important;
 }
 .home-restore-wallet p {
   color: var(--secondary) !important;
