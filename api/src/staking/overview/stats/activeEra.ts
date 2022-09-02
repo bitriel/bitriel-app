@@ -1,6 +1,6 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
-import { config, logger } from '../../../utils';
+import { config, logger, getAPI } from '../../../utils';
 import { getEraTimeLeft } from '../../support';
 
 /* eslint "no-underscore-dangle": "off" */
@@ -14,17 +14,30 @@ Sentry.init({
   ],
 });
 
-const ActiveEraStatBox = (eraLength: any, eraProgress: any, activeEra: number) => {
+const ActiveEraStatBox = async () => {
   try {
-    const eraTimeLeft = getEraTimeLeft(eraLength, eraProgress);
+    const api = await getAPI();
+
+    const [session] = await Promise.all([
+      api.derive.session.progress()
+    ]);
+
+    await api.disconnect().catch((error: any) => {
+      logger.error(
+        `API disconnect error: ${JSON.stringify(error)}`,
+      );
+      Sentry.captureException(error);
+    });
+
+    const eraTimeLeft = getEraTimeLeft(session.eraLength, session.eraProgress);
     const eraState = {
       label: 'Active Era',
         stat: {
-          activeEra: activeEra,
+          activeEra: session.activeEra.toNumber(),
           eraTimeLeft: eraTimeLeft,
         },
       };
-      return eraState;
+    return eraState;
   } catch (error) {
     logger.error(error);
     Sentry.captureException(error);

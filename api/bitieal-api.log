@@ -1,8 +1,0 @@
-{"level":30,"time":1662095243289,"pid":244037,"hostname":"msi-Katana","msg":"Connecting to nodes..."}
-{"level":30,"time":1662095243290,"pid":244037,"hostname":"msi-Katana","msg":"Inside"}
-{"level":30,"time":1662095244605,"pid":244037,"hostname":"msi-Katana","msg":"... connected"}
-{"level":30,"time":1662095244605,"pid":244037,"hostname":"msi-Katana","msg":"Syncing node..."}
-{"level":30,"time":1662095244671,"pid":244037,"hostname":"msi-Katana","msg":"Syncing complete"}
-{"level":30,"time":1662095244671,"pid":244037,"hostname":"msi-Katana","msg":"Removing unfinished blocks..."}
-{"level":30,"time":1662095244835,"pid":244037,"hostname":"msi-Katana","msg":"Closing providers"}
-{"level":30,"time":1662095244837,"pid":244037,"hostname":"msi-Katana","msg":"Finished"}
