@@ -1,5 +1,7 @@
 export { default as config } from './config';
 export { default as logger } from './logger';
+export * from './types'
+
 import NodeProvider from './NodeProvider';
 import APP_CONFIG from './config'
 

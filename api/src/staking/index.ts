@@ -19,7 +19,7 @@ const useNetworkMetrics = async () => {
     nodeProvider.getProvider().api.derive.session.progress()
   ]);
 
-  const eraState = activeEra(session.eraLength, session.eraProgress, session.activeEra)
+  const eraState = activeEra(session.eraLength, session.eraProgress, session.activeEra.toNumber())
    
   console.log(eraState)
 };
