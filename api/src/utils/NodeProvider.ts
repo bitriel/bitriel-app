@@ -1,51 +1,118 @@
-import * as Sentry from '@sentry/node';
-import '@polkadot/api-augment';
-import { options } from "@selendra/api";
-const { ApiPromise, WsProvider } = require("@polkadot/api");
+import { Provider } from '@selendra/selendra_evm';
+import { WsProvider } from '@polkadot/api';
+import { max, wait } from './index';
 import logger from './logger';
-import APP_CONFIG from './config'
 
-Sentry.init({
-  dsn: APP_CONFIG.sentryDns,
-  tracesSampleRate: 1.0,
-});
+export default class NodeProvider {
+  private urls: string[];
 
-export const getAPI = async (): Promise<typeof ApiPromise> => {
-  let api;
-  logger.debug(`Connecting to ${APP_CONFIG.nodeUrls}`);
-  const provider = new WsProvider(APP_CONFIG.nodeUrls);
+  private dbBlockId = -1;
 
-  provider.on('disconnected', () =>
-    logger.error(
-      `Got disconnected from provider ${APP_CONFIG.nodeUrls}`,
-    ),
-  );
-  provider.on('error', (error: any) => logger.error(`Got error from provider: ${error}!`));
+  private currentProvider = 0;
 
-  api = new ApiPromise(options({ provider }));
+  private providers: Provider[] = [];
 
-  api.on('disconnected', () => logger.error('Got disconnected from API!'));
-  api.on('error', (error: any) => logger.error(`Got error from API: ${error}`),
-  );
+  private lastBlockIds: number[] = [];
 
-  await api.isReady;
-  return api;
-};
+  private lastFinalizedBlockIds: number[] = [];
 
-export const isNodeSynced = async (
-  api: typeof ApiPromise,
-): Promise<boolean> => {
-  let node;
-  try {
-    node = await api.rpc.system.health();
-  } catch (error) {
-    logger.error("Can't query node status");
-    Sentry.captureException(error);
+  constructor(urls: string[]) {
+    this.urls = [...urls];
   }
-  if (node && node.isSyncing.eq(false)) {
-    logger.debug('Node is synced!');
-    return true;
+
+  setDbBlockId(id: number) {
+    this.dbBlockId = id;
   }
-  logger.debug('Node is NOT synced!');
-  return false;
-};
+
+  lastBlockId() {
+    return max(...this.lastBlockIds);
+  }
+
+  lastFinalizedBlockId() {
+    return max(...this.lastFinalizedBlockIds);
+  }
+
+  getProvider() {
+    if (this.providers.length === 0) {
+      throw new Error('Initialize providers! Non was detected');
+    }
+    const pointer = this.currentProvider;
+    this.currentProvider = (this.currentProvider + 1) % this.providers.length;
+    return this.providers[pointer];
+  }
+
+  /* eslint "no-unused-vars": "off" */
+  async query<T>(fun: (provider: Provider) => Promise<T>): Promise<T> {
+    this.currentProvider = (this.currentProvider + 1) % this.providers.length;
+    while (this.lastBlockIds[this.currentProvider] < this.dbBlockId) {
+      this.currentProvider = (this.currentProvider + 1) % this.providers.length;
+    }
+    const providerPointer = this.providers[this.currentProvider];
+    return fun(providerPointer);
+  }
+
+  async initializeProviders(): Promise<void> {
+    logger.info('Connecting to nodes...');
+    await this.initializeNodeProviders();
+    logger.info('... connected');
+    logger.info('Syncing node...');
+    await this.syncNode();
+    logger.info('Syncing complete');
+  }
+
+  async closeProviders(): Promise<void> {
+    logger.info('Closing providers');
+
+    for (let index = 0; index < this.providers.length; index += 1) {
+      await this.providers[index].api.disconnect();
+    }
+
+    this.providers = [];
+    this.lastBlockIds = [];
+    this.lastFinalizedBlockIds = [];
+  }
+
+  async restartNodeProviders(): Promise<void> {
+    await this.closeProviders();
+    await this.initializeProviders();
+  }
+
+  private async areNodesSyncing(): Promise<boolean> {
+    for (let index = 0; index < this.providers.length; index += 1) {
+      const node = await this.providers[index].api.rpc.system.health();
+      if (node.isSyncing.eq(true)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private async syncNode(): Promise<void> {
+    while (await this.areNodesSyncing()) {
+      await wait(1000);
+    }
+  }
+
+  private async initializeNodeProviders() {
+    logger.info('Inside');
+    for (let index = 0; index < this.urls.length; index += 1) {
+      const provider = new Provider({
+        provider: new WsProvider(this.urls[index]),
+      });
+      await provider.api.isReadyOrError;
+      this.providers.push(provider);
+      this.lastBlockIds.push(-1);
+    }
+
+    for (let index = 0; index < this.providers.length; index += 1) {
+      this.providers[index].api.rpc.chain.subscribeFinalizedHeads(
+        async (header) => {
+          this.lastFinalizedBlockIds[index] = header.number.toNumber();
+        },
+      );
+      this.providers[index].api.rpc.chain.subscribeNewHeads(async (header) => {
+        this.lastBlockIds[index] = header.number.toNumber();
+      });
+    }
+  }
+}

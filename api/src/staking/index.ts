@@ -1,10 +1,11 @@
 import { config, logger } from '../utils';
-import { activeEra } from './overview';
+import { activeEra, TotalNominations } from './overview';
 
 const StakingApi = async () => {
-  const eraState = await activeEra()
-   
-  console.log(eraState)
+  const eraState = await activeEra();
+  const totalNomState = await TotalNominations();
+
+  console.log(totalNomState)
 };
 
 Promise.resolve()

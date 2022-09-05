@@ -1,6 +1,7 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
-import { config, logger } from '../../../utils';
+import { config, logger, nodeProvider } from '../../../utils';
+import BN from 'bn.js';
 
 /* eslint "no-underscore-dangle": "off" */
 Sentry.init({
@@ -13,13 +14,20 @@ Sentry.init({
   ],
 });
 
-const TotalNominatorsStatBox = (totalNominators: number, maxNominatorsCount: number) => {
+const TotalNominatorsStatBox = async () => {
   try {
+    await nodeProvider.initializeProviders();
+
+    const [totalNominators, maxNominatorsCount] = await Promise.all([
+      nodeProvider.getProvider().api.query.staking.counterForNominators(),
+      nodeProvider.getProvider().api.query.staking.maxNominatorsCount(),
+    ]);
+
     const totalNominatorsState = {
       label: 'Total Nominators',
         stat: {
-          activeEra: totalNominators,
-          eraTimeLeft: maxNominatorsCount,
+          totalNominators: new BN(totalNominators.toString()),
+          maxNominatorsCount: maxNominatorsCount.isSome ? new BN(maxNominatorsCount.toString()) :  new BN(0),
         },
       };
       return totalNominatorsState;
