@@ -1,6 +1,6 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
-import { config, logger, nodeProvider } from '../../../utils';
+import { config, logger, NodeProviderType } from '../../../utils';
 import { getEraTimeLeft } from '../../support';
 import BN from 'bn.js';
 
@@ -15,10 +15,8 @@ Sentry.init({
   ],
 });
 
-const ActiveEraStatBox = async () => {
+const ActiveEraStatBox = async (nodeProvider: NodeProviderType) => {
   try {
-    await nodeProvider.initializeProviders();
-
     const session = await nodeProvider.getProvider().api.derive.session.progress();
 
     const eraTimeLeft = getEraTimeLeft(session.eraLength, session.eraProgress);

@@ -1,7 +1,9 @@
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
-import { config, logger, nodeProvider } from '../../../utils';
 import BN from 'bn.js';
+import { config, logger, nodeProvider, NodeProviderType } from '../../../utils';
+import { GetTotalNorminatorStaking, GetTotalNorminatorCount } from '../../support';
+
 
 /* eslint "no-underscore-dangle": "off" */
 Sentry.init({
@@ -14,20 +16,26 @@ Sentry.init({
   ],
 });
 
-const TotalNominatorsStatBox = async () => {
+const TotalNominatorsStatBox = async (nodeProvider: NodeProviderType, activeEra: BN | Number) => {
   try {
-    await nodeProvider.initializeProviders();
+    let totalNominators = 0;
 
-    const [totalNominators, maxNominatorsCount] = await Promise.all([
+    const [totalNominatorsCount, exposures] = await Promise.all([
       nodeProvider.getProvider().api.query.staking.counterForNominators(),
-      nodeProvider.getProvider().api.query.staking.maxNominatorsCount(),
+      nodeProvider.getProvider().api.query.staking.erasStakers.entries(activeEra),
     ]);
+
+    exposures.forEach(([_key, exposure]) => {
+      const activeNominators = JSON.parse(exposure.toString());
+      const totalNorminatorCount = GetTotalNorminatorCount(activeNominators);
+      totalNominators = totalNominators + totalNorminatorCount;
+    });
 
     const totalNominatorsState = {
       label: 'Total Nominators',
         stat: {
-          totalNominators: new BN(totalNominators.toString()),
-          maxNominatorsCount: maxNominatorsCount.isSome ? new BN(maxNominatorsCount.toString()) :  new BN(0),
+          totalActiveNominators: new BN(totalNominatorsCount.toString()),
+          totaltotalNominatorsCount: new BN(totalNominators),
         },
       };
       return totalNominatorsState;

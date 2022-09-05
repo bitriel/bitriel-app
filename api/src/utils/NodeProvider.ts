@@ -41,15 +41,15 @@ export default class NodeProvider {
     return this.providers[pointer];
   }
 
-  /* eslint "no-unused-vars": "off" */
-  async query<T>(fun: (provider: Provider) => Promise<T>): Promise<T> {
-    this.currentProvider = (this.currentProvider + 1) % this.providers.length;
-    while (this.lastBlockIds[this.currentProvider] < this.dbBlockId) {
-      this.currentProvider = (this.currentProvider + 1) % this.providers.length;
-    }
-    const providerPointer = this.providers[this.currentProvider];
-    return fun(providerPointer);
-  }
+  // /* eslint "no-unused-vars": "off" */
+  // async query<T>(fun: (provider: Provider) => Promise<T>): Promise<T> {
+  //   this.currentProvider = (this.currentProvider + 1) % this.providers.length;
+  //   while (this.lastBlockIds[this.currentProvider] < this.dbBlockId) {
+  //     this.currentProvider = (this.currentProvider + 1) % this.providers.length;
+  //   }
+  //   const providerPointer = this.providers[this.currentProvider];
+  //   return fun(providerPointer);
+  // }
 
   async initializeProviders(): Promise<void> {
     logger.info('Connecting to nodes...');
