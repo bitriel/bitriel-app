@@ -16,7 +16,7 @@ Sentry.init({
   ],
 });
 
-const TotalNominatorsStatBox = async (nodeProvider: NodeProviderType, activeEra: BN | Number) => {
+const nominatorsStat = async (nodeProvider: NodeProviderType, activeEra: BN | Number) => {
   try {
     let totalNominators = 0;
 
@@ -45,4 +45,4 @@ const TotalNominatorsStatBox = async (nodeProvider: NodeProviderType, activeEra:
   }
 };
   
-export default TotalNominatorsStatBox;
+export default nominatorsStat;

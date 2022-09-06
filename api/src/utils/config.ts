@@ -14,4 +14,10 @@ export default {
   sentryDns: process.env.SENTRY_DNS || '',
   expectedBlockTime:  toNumber(6000, process.env.EXPECTED_BLOCK_TIME),
   maxNominatorRewardedPerValidator: toNumber(256, process.env.MAX_NOMINATOR_REWARDED_PER_VALIDATOR),
+  inflationConfig : {
+    falloff: toNumber(0.05, process.env.FALLOFF),
+    maxInflation: toNumber(0.025, process.env.MAX_INFLATION),
+    minInflation: toNumber(0.0025, process.env.MIN_INFLATION),
+    stakeTarget: toNumber(0.50, process.env.STAKE_TARGET),
+  }
 }

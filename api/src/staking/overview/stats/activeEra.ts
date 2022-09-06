@@ -15,7 +15,7 @@ Sentry.init({
   ],
 });
 
-const ActiveEraStatBox = async (nodeProvider: NodeProviderType) => {
+const activeEraState = async (nodeProvider: NodeProviderType) => {
   try {
     const session = await nodeProvider.getProvider().api.derive.session.progress();
 
@@ -34,4 +34,4 @@ const ActiveEraStatBox = async (nodeProvider: NodeProviderType) => {
   }
 };
   
-export default ActiveEraStatBox;
+export default activeEraState;
