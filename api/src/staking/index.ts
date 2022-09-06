@@ -1,5 +1,5 @@
 import { config, logger } from '../utils';
-import { activeEraState, nominationsState, inflationState } from './overview';
+import { activeEraState, nominationsState, inflationState, accountState } from './overview';
 import { nodeProvider, promiseWithTimeout } from '../utils';
 import { RewriteFrames } from '@sentry/integrations';
 import * as Sentry from '@sentry/node';
@@ -19,8 +19,9 @@ const StakingApi = async () => {
   // const eraState = await activeEraState(nodeProvider);
   // const totalNomState = await nominationsState(nodeProvider, eraState?.stat.activeEra ? eraState?.stat.activeEra : 0);
   // const inflation = await inflationState(nodeProvider);
-
   // console.log(inflation?.idealInterest)
+
+  await accountState(nodeProvider, "5DM7PJEFPbcYViEzFXu5GjF96JgoSJ3rb6jfXLsmXqrPVG2o")
 };
 
 Promise.resolve()

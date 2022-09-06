@@ -13,6 +13,7 @@ export default {
   nodeUrls: process.env.NODE_PROVIDER_URLS ? JSON.parse(process.env.NODE_PROVIDER_URLS) as string[] : defaultNodeUrls,
   sentryDns: process.env.SENTRY_DNS || '',
   expectedBlockTime:  toNumber(6000, process.env.EXPECTED_BLOCK_TIME),
+  networkDecimal:  toNumber(12, process.env.NETWORK_DECIMAL),
   maxNominatorRewardedPerValidator: toNumber(256, process.env.MAX_NOMINATOR_REWARDED_PER_VALIDATOR),
   inflationConfig : {
     falloff: toNumber(0.05, process.env.FALLOFF),
