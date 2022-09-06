@@ -1,9 +1,9 @@
-import { Col } from 'antd';
-import { useState } from 'react';
-import { Card, Button } from 'globalComponents';
-import { useSubmitExtrinsic } from '../../../hooks/useSubmitExtrinsic';
-import { FormatFee } from '../../../utils';
-import ModalConfirmTrx from '../../Modal/ModalConfirmTrx';
+import { Col } from 'antd'
+import { useState } from 'react'
+import { Card, Button } from 'globalComponents'
+import { useSubmitExtrinsic } from '../../../hooks/useSubmitExtrinsic'
+import { FormatFee } from '../../../utils'
+import ModalConfirmTrx from '../../Modal/ModalConfirmTrx'
 
 export default function Summary({
   form,
@@ -11,25 +11,25 @@ export default function Summary({
   api,
   warning,
   error,
-  bondError
+  bondError,
 }) {
-  const [password, setPassword] = useState('');
-  const [modal, setModal] = useState(false);
+  const [password, setPassword] = useState('')
+  const [modal, setModal] = useState(false)
 
   function trx() {
     const _nominate = nominate.map((i) => {
       return {
         Id: i,
-      };
-    });
+      }
+    })
     // eslint-disable-next-line no-undef
-    const bond = BigInt(form.bond * Math.pow(10, 12));
+    const bond = BigInt(form.bond * Math.pow(10, 12))
     const txs = [
-      api.tx.staking.bond({Id: form.stash}, bond, form.payee),
+      api.tx.staking.bond({ Id: form.stash }, bond, form.payee),
       api.tx.staking.nominate(_nominate),
-      api.tx.staking.setController({Id: form.controller})
-    ];
-    return api.tx.utility.batch(txs);
+      api.tx.staking.setController({ Id: form.controller }),
+    ]
+    return api.tx.utility.batch(txs)
   }
 
   const { submitTx, submitting, estimatedFee } = useSubmitExtrinsic({
@@ -47,7 +47,7 @@ export default function Summary({
   return (
     <Card>
       <h2>Summary</h2>
-      <table className='staking-table'>
+      <table className="staking-table">
         <tbody>
           <tr>
             <td>Controller:</td>
@@ -57,10 +57,10 @@ export default function Summary({
             <td>Reward Destination:</td>
             <td>{form.payee}</td>
           </tr>
-          <tr>
+          {/* <tr>
             <td>Nominations:</td>
             <td>{nominate.length}</td>
-          </tr>
+          </tr> */}
           <tr>
             <td>Bond Amount:</td>
             <td>{form.bond} CDM</td>
@@ -75,15 +75,17 @@ export default function Summary({
         </tbody>
       </table>
       <Col span={24}>
-        <Button.Primary 
-          block 
+        <Button.Primary
+          block
           // disabled={error || bondError}
           loading={submitting}
-          onClick={() => setModal(true)} 
-        >Confirm</Button.Primary>
+          onClick={() => setModal(true)}
+        >
+          Confirm
+        </Button.Primary>
       </Col>
 
-      <ModalConfirmTrx 
+      <ModalConfirmTrx
         visible={modal}
         setVisible={setModal}
         password={password}

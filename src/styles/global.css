@@ -24,7 +24,7 @@ html {
 html[data-theme='dark'] {
   /* --background: #141d21; */
   --background: #161922;
-  --foreground: #2d333b;
+  --foreground: #1b2237;
   --background-input: #f3f3f3;
   --text-color: rgb(187, 187, 187);
   --box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px;
@@ -41,7 +41,7 @@ html[data-theme='dark'] {
 }
 html[data-theme='light'] {
   --background: #f0f2f5;
-  --foreground: rgba(255, 255, 255, 1);
+  --foreground: #f0f2f5;
   --background-input: #f3f3f3;
   --text-color: #22272e;
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -249,9 +249,9 @@ html[data-theme='light'] {
   -webkit-filter: brightness(1.1);
 }
 /*===>> ANT-INPUT <<===*/
-/* .ant-input {
-  border: 1px solid !important;
-} */
+.ant-input {
+  border: 0.5px solid var(--primary-gradient) !important;
+}
 .ant-input-affix-wrapper:hover,
 .ant-input-affix-wrapper:visited {
   box-shadow: none !important;
@@ -270,7 +270,7 @@ html[data-theme='light'] {
 }
 .funan-input {
   color: var(--text-color) !important;
-  background-color: var(--background) !important;
+  background-color: var(--foreground) !important;
   border-radius: 8px !important;
   margin: 4px 0 !important;
 }
@@ -332,7 +332,9 @@ html[data-theme='light'] {
   border-radius: 16px;
 }
 .ant-input-number-input {
-  height: 55px !important;
+  height: 53px !important;
+  background: var(--foreground) !important;
+  border-radius: 16px 0px 0px 16px;
 }
 .ant-input-number-group-addon {
   border-radius: 0px 16px 16px 0px !important;
@@ -489,6 +491,14 @@ html[data-theme='light'] {
   padding: 0px !important;
 }
 
+.site-collapse-custom-collapse.ant-collapse
+  > .ant-collapse-item
+  > .ant-collapse-header {
+  color: var(--text-color) !important;
+  text-align: right !important;
+  justify-content: right !important;
+}
+
 /* ==========table============= */
 .ant-table,
 .ant-table-thead > tr > th {
@@ -523,6 +533,17 @@ html[data-theme='light'] {
 /*==footer=== */
 .ant-layout-footer {
   background: var(--sidebar) !important;
+}
+
+/* divider */
+
+.ant-divider {
+  border-color: var(--orange-gradient-icon) !important;
+}
+
+/* alert */
+.ant-alert {
+  border-radius: 12px !important;
 }
 
 @media screen and (max-width: 768px) {

@@ -1,29 +1,29 @@
-import { Row } from 'antd';
-import { useState } from 'react';
-import { Modal, Button, Input } from 'globalComponents';
-import { useSubstrateState } from '../../../context/SubstrateContext';
-import { useSubmitExtrinsic } from '../../../hooks/useSubmitExtrinsic';
-import { FormatFee } from '../../../utils';
-import ModalConfirmTrx from '../../Modal/ModalConfirmTrx';
-import { useStaking } from '../../../context/StakingContext';
+import { Row } from 'antd'
+import { useState } from 'react'
+import { Modal, Button, Input } from 'globalComponents'
+import { useSubstrateState } from '../../../context/SubstrateContext'
+import { useSubmitExtrinsic } from '../../../hooks/useSubmitExtrinsic'
+import { FormatFee } from '../../../utils'
+import ModalConfirmTrx from '../../Modal/ModalConfirmTrx'
+import { useStaking } from '../../../context/StakingContext'
 
-export default function BondExtra({visible, setVisible}) {
-  const { api, decimals, currentAccount } = useSubstrateState();
-  const { getBondOptions } = useStaking();
-  const [amount, setAmount] = useState('');
-  const [password, setPassword] = useState('');
-  const [modal, setModal] = useState(false);
-  const { freeToBond } = getBondOptions();
+export default function BondExtra({ visible, setVisible }) {
+  const { api, decimals, currentAccount } = useSubstrateState()
+  const { getBondOptions } = useStaking()
+  const [amount, setAmount] = useState('')
+  const [password, setPassword] = useState('')
+  const [modal, setModal] = useState(false)
+  const { freeToBond } = getBondOptions()
 
   function handleBond() {
     try {
-      let trx = null;
-      if (!api || !amount) return trx;
+      let trx = null
+      if (!api || !amount) return trx
       // eslint-disable-next-line no-undef
-      const parsedAmount = BigInt(amount * Math.pow(10, decimals));
-      
-      trx = api.tx.staking.bondExtra(parsedAmount);
-      return trx;
+      const parsedAmount = BigInt(amount * Math.pow(10, decimals))
+
+      trx = api.tx.staking.bondExtra(parsedAmount)
+      return trx
     } catch (error) {}
   }
 
@@ -38,7 +38,7 @@ export default function BondExtra({visible, setVisible}) {
     callbackInBlock: () => {
       setVisible(false)
     },
-  });
+  })
 
   return (
     <div>
@@ -48,25 +48,28 @@ export default function BondExtra({visible, setVisible}) {
         onCancel={() => setVisible(false)}
       >
         <h2>Bond Extra</h2>
-        <p>Available: {(freeToBond)} CDM</p><br/>
+        <p>Available: {freeToBond} CDM</p>
+        <br />
         <p>Bond CDM</p>
-        <Input.Text 
-          size='large' 
-          placeholder='Enter amount CDM' 
-          onChange={e => setAmount(e.target.value)}
+        <Input.Text
+          size="large"
+          placeholder="Enter amount CDM"
+          onChange={(e) => setAmount(e.target.value)}
         />
-        <Row justify='end'>
+        <Row justify="end">
           <p>Estimated Tx Fee: {FormatFee(estimatedFee)} CDM</p>
         </Row>
         <br />
-        <Button.Primary 
-          block 
-          loading={submitting} 
-          onClick={() => setModal(true)} 
-        >Submit</Button.Primary>
+        <Button.Primary
+          block
+          loading={submitting}
+          onClick={() => setModal(true)}
+        >
+          Submit
+        </Button.Primary>
       </Modal>
 
-      <ModalConfirmTrx 
+      <ModalConfirmTrx
         visible={modal}
         setVisible={setModal}
         password={password}

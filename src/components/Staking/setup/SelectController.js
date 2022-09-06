@@ -1,11 +1,11 @@
-import { Col, Row } from 'antd';
-import { Card } from 'globalComponents';
-import { useAccounts } from 'hooks/useAccounts';
-import { getUsername, shortenAddress } from 'utils';
-import ErrorHandling from '../ErrorHandling';
+import { Col, Row } from 'antd'
+import { useAccounts } from 'hooks/useAccounts'
+import { getUsername, shortenAddress } from 'utils'
+import ErrorHandling from '../ErrorHandling'
+import { CryptoAvatar, Card } from '../../../globalComponents'
 
 const selectedStyle = {
-  borderColor: '#03a9f4'
+  borderColor: '#03a9f4',
 }
 
 export default function SelectController({
@@ -13,44 +13,40 @@ export default function SelectController({
   form,
   setForm,
   warning,
-  error
+  error,
 }) {
-  const { allAccounts } = useAccounts();
+  const { allAccounts } = useAccounts()
 
   return (
     <Card>
       <h2>Set Controller Account</h2>
-      <br/>
+      <br />
       <Row gutter={[16, 8]}>
-        { allAccounts.map((i,key) =>
+        {allAccounts.map((i, key) => (
           <Col span={8} key={key}>
-            <div 
-              className='staking-controller'
+            <div
+              className="staking-controller "
               style={i === form.controller ? selectedStyle : {}}
-              onClick={() => setForm({
-                stash: form.stash,
-                controller: i,
-                payee: form.payee,
-                bond: form.bond,
-                nominate: nominate
-              })}
+              onClick={() =>
+                setForm({
+                  stash: form.stash,
+                  controller: i,
+                  payee: form.payee,
+                  bond: form.bond,
+                  nominate: nominate,
+                })
+              }
             >
-              <img
-                alt=''
-                src={`https://avatars.dicebear.com/api/pixel-art-neutral/${i}.svg`}
-                width={40}
-                style={{borderRadius: '20px'}}
-              />
-              <h3>{getUsername(i)}</h3>
-              <p>{shortenAddress(i)}</p>
+              <center>
+                <CryptoAvatar addrees={i} />
+                <h3>{getUsername(i)}</h3>
+                <p>{shortenAddress(i)}</p>
+              </center>
             </div>
           </Col>
-        )}
+        ))}
         {/* Controller error */}
-        <ErrorHandling 
-          warning={warning}
-          error={error}
-        />
+        <ErrorHandling warning={warning} error={error} />
       </Row>
     </Card>
   )

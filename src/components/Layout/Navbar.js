@@ -13,8 +13,10 @@ const Navbar = () => {
 
   return (
     <>
-      {location.pathname === '/home' || location.pathname === '/launchpad' ? (
-        <div className="connect-evm-2">
+      {location.pathname === '/portfolio' ||
+      location.pathname === '/swap' ||
+      location.pathname === '/earn' ? (
+        <div className="connect-evm">
           {account ? (
             <Button.GradientBorder onClick={() => setVisible(true)} medium>
               Disconnect
@@ -26,7 +28,7 @@ const Navbar = () => {
           )}
         </div>
       ) : (
-        <div className="connect-evm">
+        <div className="connect-evm-2">
           {account ? (
             <Button.GradientBorder onClick={() => setVisible(true)} medium>
               Disconnect

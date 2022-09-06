@@ -85,46 +85,12 @@ export const AddLiquidity = () => {
                 <>
                   {filter.map((data) => (
                     <>
-                      <Form.Item name="first_pool">
-                        <Input.Number
-                          min={0}
-                          medium
-                          no_afterfix
-                          prefix={data.first_symble}
-                        />
+                      <Form.Item label={data.first_symble} name="first_pool">
+                        <Input.Number min={0} medium no_afterfix />
                       </Form.Item>
-                      <Form.Item>
-                        <Row>
-                          <Col span={18}>
-                            <Slider
-                              className="token-slider-amount"
-                              tipFormatter={formatter}
-                              marks={{
-                                0: '0',
-                                25: '25%',
-                                50: '50%',
-                                75: '75%',
-                                100: {
-                                  style: {
-                                    color: '#f50',
-                                  },
-                                  label: <strong>MAX</strong>,
-                                },
-                              }}
-                            />
-                          </Col>
-                          <Col span={6}>
-                            <p>Balnace: </p>
-                          </Col>
-                        </Row>
-                      </Form.Item>
-                      <Form.Item name="second_pool">
-                        <Input.Number
-                          min={0}
-                          medium
-                          no_afterfix
-                          prefix={data.second__symble}
-                        />
+                      <br />
+                      <Form.Item label={data.second__symble} name="second_pool">
+                        <Input.Number min={0} medium no_afterfix />
                       </Form.Item>
                       <Form.Item>
                         <Card.Auto reverse>

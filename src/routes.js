@@ -1,7 +1,7 @@
 import Index from './pages'
 import Earn from './pages/earn'
-// import Staking from './pages/earn/staking'
-// import SetupStaking from './pages/earn/staking/setupStaking'
+import Staking from './pages/earns/staking'
+import SetupStaking from './pages/earns/staking/setupStaking'
 // import Payout from './pages/earn/staking/payout'
 import Home from './pages/home'
 import Receive from './pages/portfolio/receive'
@@ -145,16 +145,18 @@ const routes = [
       </Sidebar>
     ),
   },
-  // {
-  //   path: 'earn/staking',
-  //   element: (
-  //     <Sidebar>
-  //       <PageRouteAnimation myKey="earn/staking">
-  //         <Staking />
-  //       </PageRouteAnimation>
-  //     </Sidebar>
-  //   ),
-  // },
+  {
+    path: '/earns',
+    name: 'Earns',
+    icon: earn,
+    element: (
+      <Sidebar>
+        <PageRouteAnimation myKey="earns">
+          <Staking />
+        </PageRouteAnimation>
+      </Sidebar>
+    ),
+  },
   // {
   //   path: 'earn/pool',
   //   element: (
@@ -165,16 +167,16 @@ const routes = [
   //     </Sidebar>
   //   ),
   // },
-  // {
-  //   path: 'earn/validator',
-  //   element: (
-  //     <Sidebar>
-  //       <PageRouteAnimation myKey="earn/validator">
-  //         <SetupStaking />
-  //       </PageRouteAnimation>
-  //     </Sidebar>
-  //   ),
-  // },
+  {
+    path: '/earn/staking/setup/:id',
+    element: (
+      <Sidebar>
+        <PageRouteAnimation myKey="/earn/staking/setup/:id">
+          <SetupStaking />
+        </PageRouteAnimation>
+      </Sidebar>
+    ),
+  },
   {
     path: '/launchpad',
     name: 'Launchpad',

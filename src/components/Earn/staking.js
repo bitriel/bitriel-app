@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Row, Col, Collapse } from 'antd'
 import { Card, CryptoAvatar, Button } from '../../globalComponents'
 import sel from '../../assets/sel-icon.svg'
 import data from './data/validator.json'
 import { CaretRightOutlined } from '@ant-design/icons'
+import BondExtra from '../Staking/modal/BondExtra'
+import Unbond from '../Staking/modal/Unbond'
+import UnlockChunk from '../Staking/modal/UnlockChunk'
+import { Link } from 'react-router-dom'
 
 const { Panel } = Collapse
 
 export const Staking = () => {
+  const [bondExtraModal, setBondExtraModal] = useState(false)
+  const [unbondModal, setUnbondModal] = useState(false)
+  const [unlockModal, setUnlockModal] = useState(false)
+
   return (
     <>
       <Row gutter={[16, 16]}>
@@ -168,12 +176,40 @@ export const Staking = () => {
                       </Card.Auto>
                       <br />
                       {is_staking ? (
-                        <Button.Primary block medium>
-                          UnStake
-                        </Button.Primary>
+                        <Row gutter={[16, 16]}>
+                          <Col span={8}>
+                            <Button.Primary
+                              block
+                              medium
+                              onClick={() => setBondExtraModal(true)}
+                            >
+                              Stake More
+                            </Button.Primary>
+                          </Col>
+                          <Col span={8}>
+                            <Button.Primary
+                              block
+                              medium
+                              onClick={() => setUnbondModal(true)}
+                            >
+                              Unbond
+                            </Button.Primary>
+                          </Col>
+                          <Col span={8}>
+                            <Button.Primary
+                              block
+                              medium
+                              onClick={() => setUnlockModal(true)}
+                            >
+                              Stop
+                            </Button.Primary>
+                          </Col>
+                        </Row>
                       ) : (
                         <Button.Primary block medium>
-                          Stake
+                          <Link to={`staking/setup/${validator_address}`}>
+                            Stake
+                          </Link>
                         </Button.Primary>
                       )}
                       <div>
@@ -189,7 +225,6 @@ export const Staking = () => {
                               />
                             </>
                           )}
-                          className="site-collapse-custom-collapse"
                         >
                           <Panel
                             key={index}
@@ -207,6 +242,9 @@ export const Staking = () => {
           </Row>
         </Col>
       </Row>
+      <BondExtra visible={bondExtraModal} setVisible={setBondExtraModal} />
+      <Unbond visible={unbondModal} setVisible={setUnbondModal} />
+      <UnlockChunk visible={unlockModal} setVisible={setUnlockModal} />
     </>
   )
 }

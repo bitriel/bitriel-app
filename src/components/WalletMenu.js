@@ -5,12 +5,12 @@ import { useSubstrateState, useSubstrate } from '../context/SubstrateContext'
 import { createAvatar } from '@dicebear/avatars'
 import * as style from '@dicebear/avatars-bottts-sprites'
 import iconSwitch from 'assets/icons/switch.svg'
-import wallet from 'assets/icons/wallet.svg'
-import ButtonConnect from './AccountSelector/ButtonConnect'
 import ModalSelectAccount from './AccountSelector/ModalSelectAccount'
 import { useState, useEffect } from 'react'
 import { useAccounts } from '../hooks/useAccounts'
 import { Button } from '../globalComponents'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { toast } from 'react-hot-toast'
 
 const address = (addr) => (addr ? addr.address : '')
 
@@ -54,7 +54,14 @@ export default function WalletMenu({ children }) {
             <Row>
               <Col span={22}>
                 <h5 style={{ wordBreak: 'break-all' }}>
-                  <Avatar src={avatar} size={35} />
+                  <CopyToClipboard text={address(currentAccount)}>
+                    <Avatar
+                      src={avatar}
+                      size={35}
+                      onClick={() => toast.success('Copied')}
+                      style={{ cursor: 'pointer' }}
+                    />
+                  </CopyToClipboard>
                   &nbsp; &nbsp; &nbsp;
                   {address(currentAccount)
                     ? address(currentAccount)
@@ -65,7 +72,34 @@ export default function WalletMenu({ children }) {
                 {keyringOptions.length > 1 ? (
                   <Button.Switch icon={iconSwitch} title="" />
                 ) : (
-                  <Button.Switch icon={wallet} title="Current Account" />
+                  ''
+                )}
+              </Col>
+            </Row>
+            <Row justify="start">
+              <Col span={8}>
+                {state.loading ? (
+                  <Spin />
+                ) : (
+                  <div>
+                    <h1>
+                      {state.freeBalance} <span>CDM</span>
+                    </h1>
+                    <p>Available</p>
+                  </div>
+                )}
+              </Col>
+
+              <Col span={8}>
+                {state.loading ? (
+                  <Spin />
+                ) : (
+                  <div>
+                    <h1>
+                      {state.freeBalance} <span>CDM</span>
+                    </h1>
+                    <p>Total</p>
+                  </div>
                 )}
               </Col>
             </Row>

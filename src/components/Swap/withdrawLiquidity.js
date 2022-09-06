@@ -58,6 +58,8 @@ export const WithdrawLiquidtidy = () => {
     setFilter(pair.filter((data) => data.title === value))
   }
 
+  const label = liquidity.split(' ')
+
   const CardInfoHeader = () => (
     <Card.Auto reverse>
       <Row gutter={[12, 12]} justify="space-around">
@@ -87,24 +89,6 @@ export const WithdrawLiquidtidy = () => {
     <>
       {filter.map((data) => (
         <>
-          <Slider
-            className="token-slider-amount"
-            tipFormatter={formatter}
-            marks={{
-              0: '0',
-              25: '25%',
-              50: '50%',
-              75: '75%',
-              100: {
-                style: {
-                  color: '#f50',
-                },
-                label: <strong>MAX</strong>,
-              },
-            }}
-          />
-          <br />
-
           <Card.Auto reverse>
             <center>
               <h1>
@@ -177,9 +161,18 @@ export const WithdrawLiquidtidy = () => {
                   ))}
                 </Select>
               </Form.Item>
-              <Form.Item label="Amount" name="second_pool">
-                <Input.Number min={0} medium no_afterfix prefix={liquidity} />
-              </Form.Item>
+              {liquidity ? (
+                <>
+                  <Form.Item label={label[0]} name="first_amount">
+                    <Input.Number min={0} medium no_afterfix />
+                  </Form.Item>
+                  <Form.Item label={label[2]} name="second_amount">
+                    <Input.Number min={0} medium no_afterfix />
+                  </Form.Item>
+                </>
+              ) : (
+                ''
+              )}
 
               <Form.Item>{filter !== null ? <CardInfoOutro /> : ''}</Form.Item>
               <br />
