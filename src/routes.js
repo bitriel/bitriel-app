@@ -145,18 +145,18 @@ const routes = [
       </Sidebar>
     ),
   },
-  {
-    path: '/earns',
-    name: 'Earns',
-    icon: earn,
-    element: (
-      <Sidebar>
-        <PageRouteAnimation myKey="earns">
-          <Staking />
-        </PageRouteAnimation>
-      </Sidebar>
-    ),
-  },
+  // {
+  //   path: '/earns',
+  //   name: 'Earns',
+  //   icon: earn,
+  //   element: (
+  //     <Sidebar>
+  //       <PageRouteAnimation myKey="earns">
+  //         <Staking />
+  //       </PageRouteAnimation>
+  //     </Sidebar>
+  //   ),
+  // },
   // {
   //   path: 'earn/pool',
   //   element: (

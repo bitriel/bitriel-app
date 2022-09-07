@@ -1,1 +1,0 @@
-# Bitriel App frontend
