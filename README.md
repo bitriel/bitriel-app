@@ -1,1 +1,3 @@
-# Selendra Funan
+# Bitrieal App
+
+Selendra web app
