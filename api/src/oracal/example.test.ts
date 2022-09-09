@@ -2,6 +2,7 @@ import { createTestPairs } from '@polkadot/keyring/testingPairs';
 import { config, logger } from '../utils';
 import { nodeProvider } from '../utils';
 import { feedValues } from './feedValues';
+import { getValue } from './getValues';
 
 
 /// import keypart from menonic
@@ -17,7 +18,9 @@ const testPairs = createTestPairs();
 const aclice = testPairs.alice;
 
 const testOracle = async () => {
-  await feedValues(nodeProvider, aclice, 'SEL', 240_000_000_000);
+//   await feedValues(nodeProvider, aclice, 'SEL', 240_000_000_000);
+  const data = await getValue(nodeProvider, 'KUSD');
+  console.log(data)
 };
 
 Promise.resolve()
