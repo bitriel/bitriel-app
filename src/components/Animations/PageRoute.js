@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
-export default function PageRouteAnimation({children, myKey}) {
+export default function PageRouteAnimation({ children, myKey }) {
   return (
     <motion.div
       key={myKey}

@@ -77,9 +77,9 @@ const Assets = () => {
   return (
     <>
       <div className="profile-desc">
-        <Card style={{ borderRadius: '8px' }}>
-          <p className="home-title">Assets</p>
-          {account ? (
+        {account ? (
+          <Card style={{ borderRadius: '8px' }}>
+            <p className="home-title">Assets</p>
             <div>
               {loading ? (
                 <center>
@@ -99,10 +99,10 @@ const Assets = () => {
                 </center>
               )}
             </div>
-          ) : (
-            <p>You're not connect to your evm wallet.</p>
-          )}
-        </Card>
+          </Card>
+        ) : (
+          ''
+        )}
       </div>
     </>
   )

@@ -25,7 +25,7 @@ html[data-theme='dark'] {
   /* --background: #141d21; */
   --background: #161922;
   --foreground: #1b2237;
-  --background-input: #f3f3f3;
+  --background-input: #1b2237;
   --text-color: rgb(187, 187, 187);
   --box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px;
   --btn-background: #22272e;
@@ -42,6 +42,7 @@ html[data-theme='dark'] {
 html[data-theme='light'] {
   --background: #f0f2f5;
   --foreground: #f0f2f5;
+  --background-input: #fff;
   --background-input: #f3f3f3;
   --text-color: #22272e;
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -163,7 +164,7 @@ html[data-theme='light'] {
   background: var(--primary-gradient) !important;
   border-radius: 9px;
   padding: 10px 40px;
-  color: #000;
+  color: var(--text-color) !important;
 }
 
 .funan-btnGradient:hover::after {
@@ -197,6 +198,7 @@ html[data-theme='light'] {
 .funan-btnAccentMedium {
   height: 55px !important;
   border-radius: 32px !important;
+  background: rgb(234, 234, 234) !important;
 }
 .funan-btnPrimaryLarge,
 .funan-btnSecondaryLarge,
@@ -270,7 +272,7 @@ html[data-theme='light'] {
 }
 .funan-input {
   color: var(--text-color) !important;
-  background-color: var(--foreground) !important;
+  background-color: var(--background-input) !important;
   border-radius: 8px !important;
   margin: 4px 0 !important;
 }
@@ -283,7 +285,7 @@ html[data-theme='light'] {
 }
 .funan-inputNumber {
   color: var(--text-color) !important;
-  background-color: var(--background) !important;
+  background-color: var(--background-input) !important;
   border-radius: 8px !important;
 }
 .funan-inputNumber:hover,
@@ -328,7 +330,7 @@ html[data-theme='light'] {
 }
 .funan-inputArea {
   color: var(--text-color);
-  background-color: var(--background);
+  background-color: #d5d5d5 !important;
   border-radius: 16px;
 }
 .ant-input-number-input {

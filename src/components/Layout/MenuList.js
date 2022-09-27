@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { routes } from '../../routes'
 import docs from 'assets/sidebar-icons/docs.svg'
 import setting from 'assets/sidebar-icons/setting.svg'
+import market from 'assets/icons/pool.svg'
 import { useTheme } from 'next-themes'
 
 const buttomMenus = [
@@ -13,19 +14,19 @@ const buttomMenus = [
     disable: false,
     external: true,
   },
-  // {
-  //   icon: about,
-  //   name: 'About',
-  //   path: 'https://www.selendra.org/about',
-  //   disable: false,
-  //   external: true,
-  // },
   {
     icon: setting,
     name: 'Settings',
     path: '/settings',
     disable: false,
     external: false,
+  },
+  {
+    icon: market,
+    name: 'Market',
+    path: 'https://market.bitriel.com/',
+    disable: false,
+    external: true,
   },
 ]
 

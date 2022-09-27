@@ -3,6 +3,7 @@ import { Tabs } from 'antd'
 import { Staking } from '../../components/Earn/staking'
 import { Pools } from '../../components/Earn/pool'
 import { Validators } from '../../components/Earn/validators'
+import OverviewStaking from '../../components/Earn/overview'
 
 const { TabPane } = Tabs
 
@@ -13,7 +14,10 @@ export default function Earn() {
 
   return (
     <>
-      <Tabs defaultActiveKey="Stake" onChange={onChange}>
+      <Tabs defaultActiveKey="Overview" onChange={onChange}>
+        <TabPane tab="Overview" key="Overview">
+          <OverviewStaking />
+        </TabPane>
         <TabPane tab="Stake" key="Stake">
           <Staking />
         </TabPane>

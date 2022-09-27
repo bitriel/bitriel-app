@@ -1,14 +1,13 @@
 import React from 'react'
 import { Row, Col } from 'antd'
 import { Card, Button } from '../../globalComponents'
-import sel from '../../assets/sel-icon.svg'
 import pools from './data/pools.json'
 
 export const Pools = () => {
   return (
     <>
       <Row gutter={[16, 16]}>
-        <Col span={24}>
+        {/* <Col span={24}>
           <Card.Auto>
             <h1>Overview</h1>
             <br />
@@ -35,7 +34,7 @@ export const Pools = () => {
               </Row>
             </div>
           </Card.Auto>
-        </Col>
+        </Col> */}
         <Col span={24}>
           <Row gutter={[16, 16]}>
             {pools.map((data, index) => {

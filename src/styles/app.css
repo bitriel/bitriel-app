@@ -88,8 +88,9 @@ i {
   background-color: var(--foreground);
 }
 .logo {
-  height: 55px;
-  margin-top: 20px;
+  height: 65px;
+  position: relative;
+  top: 250px;
 }
 .index-top-section {
   /* background-image: var(--background-home-image); */
@@ -114,8 +115,9 @@ i {
   /* top: 40px; */
 }
 .bitriels-apps {
-  width: 1200px;
+  width: 900px;
   position: relative;
+  left: 120px;
 }
 .apps-title-container {
   width: 70%;
@@ -136,7 +138,7 @@ i {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 80px 0;
+  margin: 300px 0;
   width: 75%;
 }
 .welcome-message {
@@ -145,6 +147,11 @@ i {
   font-weight: bold;
 }
 .welcome-sub-message {
+  font-size: 24px;
+  color: #fff !important;
+  margin-top: 10px !important;
+}
+.welcome-sub-message-2 {
   font-size: 24px;
   color: #fff !important;
   margin-top: 10px !important;
@@ -580,6 +587,20 @@ i {
 }
 /*===>> END STAKING <<===*/
 /*===>> LOADING <<===*/
+.nodata {
+  height: 100%;
+  width: 100%;
+  background: var(--background-card);
+  backdrop-filter: blur(9px) saturate(180%);
+  -webkit-backdrop-filter: blur(9px) saturate(180%);
+  border-radius: 16px;
+  opacity: 1;
+  transition: 0.4s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 45% 30%;
+}
 .connecting-node {
   width: 100%;
   height: 100vh;
@@ -607,7 +628,7 @@ i {
   top: -6px;
 }
 .about-container {
-  padding-top: 150px;
+  padding-top: 100px;
 }
 /*===>> END LOADING <<===*/
 
@@ -936,10 +957,95 @@ i {
 .raise-goal {
   color: var(--primary) !important;
 }
+.black-background {
+  background: var(--primary-gradient) !important;
+}
+.market-title {
+  font-size: 64px !important;
+  color: #fff !important;
+  font-weight: 600;
+  position: relative;
+  top: -60px;
+}
+.bitriel-market-place {
+  font-size: 128px !important;
+  color: rgb(255, 159, 73) !important;
+  position: relative;
+  top: 30px;
+  left: 0;
+}
+.bitriel-market-img {
+  width: 800px;
+}
+
+.container2 {
+  position: relative;
+  top: -200px;
+}
+.btn {
+  margin-top: calc(50% + 25px);
+  position: relative;
+  display: inline-block;
+  width: 277px;
+  height: 50px;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0.045em;
+}
+
+.btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn svg rect {
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 353, 0;
+  stroke-dashoffset: 0;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+.btn span {
+  color: #fff !important;
+}
+
+.btn:hover svg rect {
+  stroke-width: 2;
+  stroke-dasharray: 196, 543;
+  stroke-dashoffset: 437;
+}
 
 /* ================responsive ================ */
 
 @media screen and (max-width: 1600px) {
+  .bitriels-apps {
+    width: 600px;
+    position: relative;
+    left: 260px;
+  }
+  .logo {
+    position: relative;
+    top: 200px;
+  }
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 200px 0;
+    width: 75%;
+  }
   .coin-transparent {
     position: absolute;
     left: -300px;
@@ -958,25 +1064,44 @@ i {
   .connect-evm {
     margin-right: 250px;
   }
+  .bitriel-mock-up {
+    width: 500px;
+    position: absolute;
+    right: -100px;
+    top: 90px;
+  }
+  .index-container {
+    max-width: 70rem;
+    margin: 0px auto;
+    height: 850px !important;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-  .bitriel-mock-up {
-    width: 600px;
-    position: absolute;
-    right: -160px;
+  .market-title {
+    font-size: 55px !important;
+  }
+  .bitriel-market-img {
+    width: 520px;
   }
   .index-container {
     padding: 20px 120px;
-    height: 747px !important;
+    /* height: 747px !important; */
   }
   .welcome {
-    width: 93%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 170px 0;
+    width: 80% !important;
+  }
+  .logo {
+    position: relative;
+    top: 150px;
   }
   .bitriels-apps {
-    width: 900px;
+    width: 500px;
     margin: auto;
-    display: grid;
   }
   .connect-evm {
     margin-right: 27px;
@@ -1039,9 +1164,8 @@ i {
     width: 100%;
   }
   .bitriels-apps {
-    width: 600px;
+    width: 350px;
     margin: auto;
-    display: grid;
   }
   .welcome-message {
     font-size: 40px;
@@ -1051,6 +1175,9 @@ i {
   }
 }
 @media screen and (max-width: 812px) {
+  .bitriel-market-img {
+    width: 390px;
+  }
   .about-container {
     padding-top: 460px !important;
   }
@@ -1066,9 +1193,9 @@ i {
   .welcome-message {
     font-size: 40px;
   }
-  .apps-section {
+  /* .apps-section {
     width: 80%;
-  }
+  } */
   .index-footer {
     display: flex;
     justify-content: center;
@@ -1079,6 +1206,15 @@ i {
 }
 
 @media screen and (max-width: 600px) {
+  .container2 {
+    text-align: center;
+  }
+  .market-title {
+    font-size: 37px !important;
+  }
+  .bitriel-market-place {
+    font-size: 85px !important;
+  }
   .staking-overview {
     display: flex;
     flex-direction: row;
@@ -1107,6 +1243,16 @@ i {
   .welcome-sub-message {
     font-size: 16px;
   }
+  .welcome-sub-message-2 {
+    text-align: center;
+    font-size: 18px !important;
+    margin-top: -20px !important;
+  }
+  .bitriel-market-img {
+    width: 320px;
+    position: relative;
+    top: -50px;
+  }
   .bitriel-mock-up {
     width: 300px;
     position: absolute;
@@ -1126,6 +1272,8 @@ i {
   .bitriels-apps {
     width: 350px;
     margin-top: 50px;
+    position: relative;
+    left: 0;
   }
   .apps-title-container {
     width: 89%;
@@ -1135,9 +1283,15 @@ i {
   }
   .welcome {
     margin: 0;
-    padding: 30px 0px;
+    padding: 20px 0px;
+    width: 100% !important;
   }
   .logo {
     height: 40px !important;
+    position: relative;
+    top: 20px;
+  }
+  .index-container {
+    height: 800px !important;
   }
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Row, Col, Collapse } from 'antd'
 import { Card, CryptoAvatar, Button } from '../../globalComponents'
-import sel from '../../assets/sel-icon.svg'
 import data from './data/validator.json'
 import { CaretRightOutlined } from '@ant-design/icons'
 import BondExtra from '../Staking/modal/BondExtra'
@@ -19,34 +18,6 @@ export const Staking = () => {
   return (
     <>
       <Row gutter={[16, 16]}>
-        <Col span={24}>
-          <Card.Auto>
-            <h1>Overview</h1>
-            <br />
-            <div className="staking-overview">
-              <Row gutter={[12, 12]}>
-                <Col>
-                  <img src={sel} alt="" height={90} />
-                </Col>
-                <Col>
-                  <p>Available to Stake</p>
-                  <h1 className="portfolio-money">24000.00 SEL</h1>
-                  <p className="portfolio-equalto">≈ 1.000111 BTC</p>
-                </Col>
-              </Row>
-              <Row gutter={[12, 12]}>
-                <Col>
-                  <img src={sel} alt="" height={90} />
-                </Col>
-                <Col>
-                  <p>Total Locked</p>
-                  <h1 className="portfolio-money">124000.00 SEL</h1>
-                  <p className="portfolio-equalto">≈ 2.000111 BTC</p>
-                </Col>
-              </Row>
-            </div>
-          </Card.Auto>
-        </Col>
         <Col span={24}>
           <Row gutter={[16, 16]}>
             {data.map((validator, index) => {

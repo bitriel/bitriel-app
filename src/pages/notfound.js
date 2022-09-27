@@ -9,5 +9,5 @@ export default function NotFound() {
         </div>
       </center>
     </div>
-  );
+  )
 }
